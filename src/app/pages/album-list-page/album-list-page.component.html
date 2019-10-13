@@ -1,0 +1,7 @@
+<div class="album-list">
+  <app-album
+    *ngFor="let album of albums"
+    [album]="album"
+    (onClick)="navigateTo(album)">
+  </app-album>
+</div>

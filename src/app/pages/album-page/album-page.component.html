@@ -1,0 +1,9 @@
+<div class="album">
+  <h1>{{ album.name }}</h1>
+  <div class="album-content">
+    <app-picture
+      *ngFor="let picture of album.pictures"
+      [picture]="picture">
+    </app-picture>
+  </div>
+</div>
