@@ -1,6 +1,6 @@
-<div (click)="onClick.emit(album)">
+<a [routerLink]="['album', album.id]">
   <app-thumbnail
     [legend]="album.name"
     [thumbnailUrl]="album.thumbnailUrl">
   </app-thumbnail>
-</div>
+</a>
