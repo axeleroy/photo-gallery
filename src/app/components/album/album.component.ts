@@ -11,9 +11,6 @@ export class AlbumComponent implements OnInit {
   @Input()
   private album: Album;
 
-  @Output()
-  private onClick: EventEmitter<Album> = new EventEmitter<Album>();
-
   constructor() { }
 
   ngOnInit() {

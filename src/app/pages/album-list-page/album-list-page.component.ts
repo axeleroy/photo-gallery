@@ -26,8 +26,4 @@ export class AlbumListPageComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  navigateTo(album: Album) {
-    this.router.navigate([ 'album', album.id ]);
-  }
-
 }
