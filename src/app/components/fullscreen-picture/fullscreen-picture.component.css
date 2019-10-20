@@ -1,0 +1,22 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: 1em 1fr 1em;
+}
+
+.picture {
+  margin: auto;
+  vertical-align: middle;
+  align-content: center;
+  height: 100vh;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+  height: inherit !important;
+}
+
+.nav {
+  margin: auto;
+  vertical-align: middle;
+}

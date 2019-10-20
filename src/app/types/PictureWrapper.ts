@@ -1,4 +1,4 @@
-import Picture from "./Picture";
+import Picture from './Picture';
 
 export interface PictureWrapper {
   picture: Picture;

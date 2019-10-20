@@ -1,0 +1,26 @@
+<div class="wrapper">
+  <div class="nav" *ngIf="wrapper?.previousPictureId; else emptyPrev">
+    <a [routerLink]="['..', wrapper?.previousPictureId]">
+      ←
+    </a>
+  </div>
+  <ng-template #emptyPrev>
+    <div class="nav"></div>
+  </ng-template>
+
+  <div class="picture">
+    <img
+        *ngIf="wrapper?.picture"
+        #pictureElement
+        [src]="wrapper.picture.fullsizeUrl"/>
+  </div>
+
+  <div class="nav" *ngIf="wrapper?.nextPictureId; else emptyNext">
+    <a [routerLink]="['..', wrapper?.nextPictureId]">
+      →
+    </a>
+  </div>
+  <ng-template #emptyNext>
+    <div class="nav"></div>
+  </ng-template>
+</div>
