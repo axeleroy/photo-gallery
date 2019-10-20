@@ -11,6 +11,7 @@ import { AlbumPageComponent } from './pages/album-page/album-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 import {PicturePageComponent} from "./pages/picture-page/picture-page.component";
+import { FullscreenPictureComponent } from './components/fullscreen-picture/fullscreen-picture.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {PicturePageComponent} from "./pages/picture-page/picture-page.component"
     AlbumListPageComponent,
     AlbumPageComponent,
     NotFoundPageComponent,
-    PicturePageComponent
+    PicturePageComponent,
+    FullscreenPictureComponent
   ],
   imports: [
     BrowserModule,

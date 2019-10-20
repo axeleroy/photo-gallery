@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot} from "@angular/router";
-import {PictureWrapper} from "../../types/PictureWrapper";
+import {ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot} from '@angular/router';
+import {PictureWrapper} from '../../types/PictureWrapper';
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +22,8 @@ export class PictureService implements Resolve<PictureWrapper> {
 
     return {
       picture: album.pictures[pictureIndex],
-      nextPictureId: (pictureIndex + 1 > album.pictures.length) ? null : album.pictures[pictureIndex + 1].id,
-      previousPictureId: (pictureIndex == 0) ? null : album.pictures[pictureIndex - 1].id
+      nextPictureId: (pictureIndex + 1 >= album.pictures.length) ? null : album.pictures[pictureIndex + 1].id,
+      previousPictureId: (pictureIndex === 0) ? null : album.pictures[pictureIndex - 1].id
     };
   }
 }
