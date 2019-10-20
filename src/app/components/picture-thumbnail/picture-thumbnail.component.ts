@@ -3,10 +3,10 @@ import Picture from '../../types/Picture';
 
 @Component({
   selector: 'app-picture',
-  templateUrl: './picture.component.html',
-  styleUrls: ['./picture.component.css']
+  templateUrl: './picture-thumbnail.component.html',
+  styleUrls: ['./picture-thumbnail.component.css']
 })
-export class PictureComponent implements OnInit {
+export class PictureThumbnailComponent implements OnInit {
 
   @Input()
   private picture: Picture;
