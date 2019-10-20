@@ -1,3 +1,10 @@
-<app-fullscreen-picture
-  [wrapper]="pictureWrapper">
-</app-fullscreen-picture>
+<div class="wrapper">
+  <div class="ribbon">
+    <a class="back" [routerLink]="['..', '..']">←</a>
+    <span class="spacing"></span>
+    <span class="info">i</span>
+  </div>
+  <app-fullscreen-picture
+    [wrapper]="pictureWrapper">
+  </app-fullscreen-picture>
+</div>
