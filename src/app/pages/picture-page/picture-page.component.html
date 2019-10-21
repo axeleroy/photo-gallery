@@ -2,9 +2,15 @@
   <div class="ribbon">
     <a class="back" [routerLink]="['..', '..']">←</a>
     <span class="spacing"></span>
-    <span class="info">i</span>
+    <span class="info" (click)="toggleInfoPanel()">i</span>
   </div>
-  <app-fullscreen-picture
-    [wrapper]="pictureWrapper">
-  </app-fullscreen-picture>
+  <div class="viewer">
+    <app-fullscreen-picture
+      [ngClass]="{ 'span-2-cols' : !showInfoPanel }"
+      [wrapper]="pictureWrapper">
+    </app-fullscreen-picture>
+    <div
+      *ngIf="showInfoPanel"
+      class="info-panel">info goes here</div> <!-- TODO: replace by component -->
+  </div>
 </div>

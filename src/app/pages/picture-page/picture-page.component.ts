@@ -10,8 +10,8 @@ import {Subscription} from 'rxjs';
 })
 export class PicturePageComponent implements OnInit, OnDestroy {
   private pictureWrapper: PictureWrapper;
-
   private subscription: Subscription;
+  showInfoPanel = false;
 
   constructor(private route: ActivatedRoute) {
     this.subscription = this.route.data.subscribe((data) => this.pictureWrapper = data.picture);
@@ -20,10 +20,12 @@ export class PicturePageComponent implements OnInit, OnDestroy {
   ngOnInit() {
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 
-
+  toggleInfoPanel() {
+    this.showInfoPanel = !this.showInfoPanel;
+  }
 
 }

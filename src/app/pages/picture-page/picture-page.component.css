@@ -3,6 +3,14 @@
   background: black;
   color: white;
   grid-template-rows: 5em 1fr;
+
+  /* Make it fullscreen */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
 }
 
 .ribbon {
@@ -18,4 +26,17 @@
 .ribbon a {
   color: white;
   text-decoration: none;
+}
+
+.viewer {
+  display: grid;
+  grid-template-columns: 1fr 15em;
+}
+
+app-fullscreen-picture {
+  height: calc(100vh - 6em);
+}
+
+.span-2-cols {
+  grid-column: span 2;
 }
