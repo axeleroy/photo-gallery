@@ -6,11 +6,16 @@
   </div>
   <div class="viewer">
     <app-fullscreen-picture
+      #pictureComponent
       [ngClass]="{ 'span-2-cols' : !showInfoPanel }"
       [wrapper]="pictureWrapper">
     </app-fullscreen-picture>
     <div
       *ngIf="showInfoPanel"
-      class="info-panel">info goes here</div> <!-- TODO: replace by component -->
+      class="info-panel">
+      <app-info-panel
+        [pictureElement]="pictureComponent.pictureElement">
+      </app-info-panel>
+    </div>
   </div>
 </div>

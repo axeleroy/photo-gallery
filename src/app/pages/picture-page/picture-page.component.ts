@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {PictureWrapper} from '../../types/PictureWrapper';
 import {Subscription} from 'rxjs';
@@ -12,6 +12,9 @@ export class PicturePageComponent implements OnInit, OnDestroy {
   private pictureWrapper: PictureWrapper;
   private subscription: Subscription;
   showInfoPanel = false;
+
+  @ViewChild('pictureComponent', { static: false })
+  pictureComponent: ElementRef;
 
   constructor(private route: ActivatedRoute) {
     this.subscription = this.route.data.subscribe((data) => this.pictureWrapper = data.picture);

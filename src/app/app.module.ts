@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 import {PicturePageComponent} from "./pages/picture-page/picture-page.component";
 import { FullscreenPictureComponent } from './components/fullscreen-picture/fullscreen-picture.component';
+import { InfoPanelComponent } from './components/info-panel/info-panel.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { FullscreenPictureComponent } from './components/fullscreen-picture/full
     AlbumPageComponent,
     NotFoundPageComponent,
     PicturePageComponent,
-    FullscreenPictureComponent
+    FullscreenPictureComponent,
+    InfoPanelComponent
   ],
   imports: [
     BrowserModule,

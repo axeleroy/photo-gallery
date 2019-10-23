@@ -40,3 +40,8 @@ app-fullscreen-picture {
 .span-2-cols {
   grid-column: span 2;
 }
+
+.info-panel {
+  background-color: white;
+  color: black;
+}
