@@ -4,8 +4,8 @@ import {AlbumListPageComponent} from './pages/album-list-page/album-list-page.co
 import {AlbumPageComponent} from './pages/album-page/album-page.component';
 import {AlbumService} from './services/album/album.service';
 import {NotFoundPageComponent} from './pages/not-found-page/not-found-page.component';
-import {PicturePageComponent} from "./pages/picture-page/picture-page.component";
-import {PictureService} from "./services/picture/picture.service";
+import {PicturePageComponent} from './pages/picture-page/picture-page.component';
+import {PictureService} from './services/picture/picture.service';
 
 const routes: Routes = [
   {
