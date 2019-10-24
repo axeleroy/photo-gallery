@@ -1,4 +1,5 @@
 import {Component, ElementRef, Input, OnInit} from '@angular/core';
+// @ts-ignore
 import EXIF from 'exif-js';
 
 @Component({
