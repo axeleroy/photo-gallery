@@ -6,8 +6,8 @@ import {AppConfig} from './AppConfig';
 
 export const environment = {
   // tslint:disable:max-line-length
-  albumListUrl: 'https://gist.githubusercontent.com/axeleroy/ef1aef17265609bb05457f55a20ee847/raw/504f35d0f6aa2cf8ee85883d26baa53cfdbe6e96/albums.json',
-  albumBaseUrl: 'https://gist.githubusercontent.com/axeleroy/ef1aef17265609bb05457f55a20ee847/raw/504f35d0f6aa2cf8ee85883d26baa53cfdbe6e96/',
+  albumListUrl: 'https://gist.githubusercontent.com/axeleroy/ef1aef17265609bb05457f55a20ee847/raw/1f9324302d8c812b9d3483869041ebf98665e9e5/albums.json',
+  albumBaseUrl: 'https://gist.githubusercontent.com/axeleroy/ef1aef17265609bb05457f55a20ee847/raw/1f9324302d8c812b9d3483869041ebf98665e9e5/',
   albumFileNameUrl: '.json',
   isProduction: false
 } as AppConfig;
