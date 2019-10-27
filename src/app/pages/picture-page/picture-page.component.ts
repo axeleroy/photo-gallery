@@ -1,8 +1,7 @@
-import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import {PictureWrapper} from '../../types/PictureWrapper';
 import {Subscription} from 'rxjs';
-import {InfoPanelComponent} from "./info-panel/info-panel.component";
 
 @Component({
   selector: 'app-picture-page',
@@ -17,7 +16,8 @@ export class PicturePageComponent implements OnInit, OnDestroy {
   @ViewChild('pictureComponent', { static: false })
   pictureComponent: ElementRef;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute,
+              private router: Router) {
     this.subscription = this.route.data.subscribe((data) => this.pictureWrapper = data.picture);
   }
 
@@ -30,6 +30,23 @@ export class PicturePageComponent implements OnInit, OnDestroy {
 
   toggleInfoPanel() {
     this.showInfoPanel = !this.showInfoPanel;
+  }
+
+  @HostListener('window:keyup', ['$event'])
+  keyEvent(event: KeyboardEvent) {
+    if (event.key === "ArrowLeft" && this.pictureWrapper.previousPictureId) {
+        this.router.navigate(['..', this.pictureWrapper.previousPictureId], { relativeTo: this.route });
+    }
+    if (event.key === "ArrowRight" && this.pictureWrapper.nextPictureId) {
+      this.router.navigate(['..', this.pictureWrapper.nextPictureId], { relativeTo: this.route });
+    }
+    if (event.key === "Escape") {
+      // Navigate back to album page
+      this.router.navigate(['../..'], { relativeTo: this.route });
+    }
+    if (event.key === "i") {
+      this.toggleInfoPanel();
+    }
   }
 
 }

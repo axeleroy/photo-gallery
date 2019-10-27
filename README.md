@@ -2,10 +2,10 @@
 
 ## Todo
 
-* Picture page
-    * Navigating between images and back to album using arrow keys and ESC
-    * Zooming in image
 * Styling / icons 
+    * Next / Previous / Back / Info buttons in PicturePage
+    * Icons in Info Panel
+    * Google Photos styling for AlbumList / Album pages
 * Script for generating albums
     * Inputs:
         * Path to pictures folder
@@ -19,4 +19,5 @@
         * AlbumContent JSON
     * Output:
         * Updated `albums.json`
-    
+* Bonus:
+    * Zooming in image

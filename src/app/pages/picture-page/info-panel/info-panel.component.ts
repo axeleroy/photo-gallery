@@ -29,7 +29,6 @@ export class InfoPanelComponent implements OnInit {
       const self = this;
       EXIF.getData(img, function() {
         self.exifTags  = EXIF.getAllTags(this);
-        console.log(self.exifTags);
       });
     }
   }
