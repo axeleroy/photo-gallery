@@ -10,11 +10,17 @@ import {EXIFNumber} from "../../../types/EXIFNumber";
 })
 export class InfoPanelComponent implements OnInit {
   exifTags: any;
+  _pictureElement: ElementRef;
 
   @Input()
   set pictureElement(value: ElementRef) {
-    if (value.nativeElement) {
-      const img = value.nativeElement;
+    this._pictureElement = value;
+    this.updateExif();
+  }
+
+  updateExif() {
+    if (this._pictureElement.nativeElement) {
+      const img = this._pictureElement.nativeElement;
       // exif-js stores a cached version of the EXIF in the element,
       // so we have to delete it in order to extract EXIF on image change.
       img.exifdata = null;

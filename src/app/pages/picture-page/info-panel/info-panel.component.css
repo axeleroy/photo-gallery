@@ -4,21 +4,16 @@
 
 .info {
   display: grid;
-  grid-template-columns: 3em auto auto;
-  line-height: 2em;
+  grid-template-columns: 2em 1fr;
+  line-height: 2.15em;
 }
 
 .icon {
   width: 2em;
   height: auto;
+  padding: .25em 0;
 }
 
-.title {
-  font-weight: bold;
-  color: black;
-  opacity: .35;
-}
-
-.title, .content {
-  padding: 0 1em;
+.content {
+  padding: .25em 1em;
 }
