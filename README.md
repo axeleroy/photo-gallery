@@ -3,7 +3,6 @@
 ## Todo
 
 * Picture page
-    * Find out why the EXIF is not always updated when going through the gallery 
     * Navigating between images and back to album using arrow keys and ESC
     * Zooming in image
 * Styling / icons 

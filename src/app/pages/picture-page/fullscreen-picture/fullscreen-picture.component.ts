@@ -19,4 +19,10 @@ export class FullscreenPictureComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Weird hack: if (load) is used, then Angular correctly updates the ElementRef all the way to InfoPanelComponent.
+   */
+  doNothing(){
+  }
+
 }
