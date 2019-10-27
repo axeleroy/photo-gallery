@@ -12,7 +12,7 @@
     <img
         *ngIf="wrapper?.picture"
         #pictureElement
-        [src]="wrapper.picture.fullsizeUrl"/>
+        [src]="wrapper.picture.fullsizeUrl" />
   </div>
 
   <div class="nav" *ngIf="wrapper?.nextPictureId; else emptyNext">

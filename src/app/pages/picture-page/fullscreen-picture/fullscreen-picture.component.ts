@@ -1,5 +1,5 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
-import {PictureWrapper} from '../../types/PictureWrapper';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {PictureWrapper} from '../../../types/PictureWrapper';
 
 @Component({
   selector: 'app-fullscreen-picture',

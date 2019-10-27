@@ -1,0 +1,24 @@
+.wrapper {
+  padding: 1em;
+}
+
+.info {
+  display: grid;
+  grid-template-columns: 3em auto auto;
+  line-height: 2em;
+}
+
+.icon {
+  width: 2em;
+  height: auto;
+}
+
+.title {
+  font-weight: bold;
+  color: black;
+  opacity: .35;
+}
+
+.title, .content {
+  padding: 0 1em;
+}

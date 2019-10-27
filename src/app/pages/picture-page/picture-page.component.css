@@ -30,7 +30,7 @@
 
 .viewer {
   display: grid;
-  grid-template-columns: 1fr 15em;
+  grid-template-columns: 1fr 20em;
 }
 
 app-fullscreen-picture {

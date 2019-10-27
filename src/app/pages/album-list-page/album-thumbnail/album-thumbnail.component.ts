@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import Album from '../../types/Album';
+import Album from '../../../types/Album';
 
 @Component({
   selector: 'app-album',
