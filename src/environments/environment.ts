@@ -6,8 +6,8 @@ import {AppConfig} from './AppConfig';
 
 export const environment = {
   // tslint:disable:max-line-length
-  albumListUrl: 'https://gist.githubusercontent.com/axeleroy/ef1aef17265609bb05457f55a20ee847/raw/1f9324302d8c812b9d3483869041ebf98665e9e5/albums.json',
-  albumBaseUrl: 'https://gist.githubusercontent.com/axeleroy/ef1aef17265609bb05457f55a20ee847/raw/1f9324302d8c812b9d3483869041ebf98665e9e5/',
+  albumListUrl: 'https://axel-leroy-sh-pictures-storage.s3.eu-central-1.amazonaws.com/albums.json',
+  albumBaseUrl: 'https://axel-leroy-sh-pictures-storage.s3.eu-central-1.amazonaws.com/',
   albumFileNameUrl: '.json',
   isProduction: false
 } as AppConfig;

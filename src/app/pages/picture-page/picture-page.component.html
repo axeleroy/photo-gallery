@@ -8,14 +8,12 @@
     <app-fullscreen-picture
       #pictureComponent
       [ngClass]="{ 'span-2-cols' : !showInfoPanel }"
-      [wrapper]="pictureWrapper">
+      [wrapper]="pictureWrapper" >
     </app-fullscreen-picture>
-    <div
+    <app-info-panel
       *ngIf="showInfoPanel"
-      class="info-panel">
-      <app-info-panel
-        [pictureElement]="pictureComponent.pictureElement">
-      </app-info-panel>
-    </div>
+      class="info-panel"
+      [pictureElement]="pictureComponent.pictureElement">
+    </app-info-panel>
   </div>
 </div>

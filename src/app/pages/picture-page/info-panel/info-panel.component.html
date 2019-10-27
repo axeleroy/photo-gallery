@@ -1,0 +1,27 @@
+<div class="wrapper" *ngIf="exifTags">
+  <div class="info">
+    <img class="icon" src="/assets/icons/camera.png" />
+    <span class="title">Camera</span>
+    <span class="content">{{ exifTags['Model'] }}</span>
+  </div>
+  <div class="info">
+    <img class="icon" src="/assets/icons/aperture.png" />
+    <span class="title">Aperture</span>
+    <span class="content">f/{{ numberToString(exifTags['FNumber']) }}</span>
+  </div>
+  <div class="info">
+    <img class="icon" src="/assets/icons/aperture.png" />
+    <span class="title">Focal length</span>
+    <span class="content">{{ numberToString(exifTags['FocalLength']) }}mm</span>
+  </div>
+  <div class="info">
+    <img class="icon" src="/assets/icons/aperture.png" />
+    <span class="title">Exposure</span>
+    <span class="content">{{ numberToString(exifTags['ExposureTime'], true) }}s</span>
+  </div>
+  <div class="info">
+    <img class="icon" src="/assets/icons/aperture.png" />
+    <span class="title">ISO</span>
+    <span class="content">{{ exifTags['ISOSpeedRatings'] }}</span>
+  </div>
+</div>

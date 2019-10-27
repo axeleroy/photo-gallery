@@ -2,6 +2,7 @@ import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core
 import {ActivatedRoute} from '@angular/router';
 import {PictureWrapper} from '../../types/PictureWrapper';
 import {Subscription} from 'rxjs';
+import {InfoPanelComponent} from "./info-panel/info-panel.component";
 
 @Component({
   selector: 'app-picture-page',
