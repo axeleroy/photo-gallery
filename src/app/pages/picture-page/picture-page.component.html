@@ -1,8 +1,13 @@
 <div class="wrapper">
   <div class="ribbon">
-    <a class="back" [routerLink]="['../..']">←</a>
+    <a class="back" [routerLink]="['../..']">
+      <img src="/assets/icons/back.svg" alt="Back" />
+    </a>
     <span class="spacing"></span>
-    <span class="info" (click)="toggleInfoPanel()">i</span>
+    <span class="info" (click)="toggleInfoPanel()">
+      <img *ngIf="showInfoPanel" src="/assets/icons/info-filled.svg" alt="Close info panel" />
+      <img *ngIf="!showInfoPanel" src="/assets/icons/info.svg" alt="Open info panel" />
+    </span>
   </div>
   <div class="viewer">
     <app-fullscreen-picture

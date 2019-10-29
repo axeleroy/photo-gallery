@@ -1,7 +1,7 @@
 <div class="wrapper">
   <div class="nav" *ngIf="wrapper?.previousPictureId; else emptyPrev">
     <a [routerLink]="['..', wrapper?.previousPictureId]">
-      ←
+      <img src="/assets/icons/previous.svg" alt="Previous" />
     </a>
   </div>
   <ng-template #emptyPrev>
@@ -18,7 +18,7 @@
 
   <div class="nav" *ngIf="wrapper?.nextPictureId; else emptyNext">
     <a [routerLink]="['..', wrapper?.nextPictureId]">
-      →
+      <img src="/assets/icons/next.svg" alt="Next" />
     </a>
   </div>
   <ng-template #emptyNext>
