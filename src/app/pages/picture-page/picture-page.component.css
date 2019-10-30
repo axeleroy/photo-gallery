@@ -2,7 +2,7 @@
   display: grid;
   background: black;
   color: white;
-  grid-template-rows: 5em 1fr;
+  grid-template-rows: 3em 1fr;
 
   /* Make it fullscreen */
   position: absolute;
@@ -16,7 +16,7 @@
 .ribbon {
   display: grid;
   grid-template-columns: 2em 1fr 2em;
-  padding: 1em;
+  padding: .5em;
 }
 
 .back, .info {
@@ -34,7 +34,7 @@
 }
 
 app-fullscreen-picture {
-  height: calc(100vh - 6em);
+  height: calc(100vh - 3em);
 }
 
 .span-2-cols {

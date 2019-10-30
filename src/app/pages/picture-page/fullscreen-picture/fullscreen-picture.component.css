@@ -1,6 +1,6 @@
 .wrapper {
   display: grid;
-  grid-template-columns: 3em 1fr 3em;
+  grid-template-columns: 5em 1fr 5em;
   height: inherit;
 }
 
@@ -9,7 +9,7 @@
   height: inherit;
 }
 
-img {
+.picture img {
   margin: auto;
   max-width: 100%;
   max-height: 100%;
