@@ -33,9 +33,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="11.313709"
-     inkscape:cx="12.206182"
-     inkscape:cy="16.316558"
+     inkscape:zoom="16"
+     inkscape:cx="17.824426"
+     inkscape:cy="12.915398"
      inkscape:document-units="mm"
      inkscape:current-layer="g987"
      showgrid="true"
@@ -43,9 +43,9 @@
      showguides="false"
      scale-x="1"
      units="px"
-     inkscape:window-width="2560"
-     inkscape:window-height="1371"
-     inkscape:window-x="0"
+     inkscape:window-width="1920"
+     inkscape:window-height="1011"
+     inkscape:window-x="1920"
      inkscape:window-y="32"
      inkscape:window-maximized="1"
      inkscape:pagecheckerboard="true">
@@ -73,10 +73,17 @@
      inkscape:groupmode="layer"
      inkscape:label="Copie de Calque 2">
     <path
-       style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.96362406px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 12 6 L 2 15 L 2 16 L 12 25 L 13.894531 23.105469 L 7.1113281 17 L 30 17 L 30 14 L 7.1113281 14 L 13.894531 7.8945312 L 12 6 z "
+       style="fill:#ffffff;fill-rule:evenodd;stroke:none;stroke-width:1.02597654px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 13.007812 4.4921875 L 4.328125 13.171875 L 1.5 16 L 4.328125 18.828125 L 13.007812 27.507812 L 15.835938 24.679688 L 7.15625 16 L 15.835938 7.3203125 L 13.007812 4.4921875 z "
        transform="matrix(0.26458333,0,0,0.26458333,0,288.53334)"
-       id="rect983" />
+       id="rect1072" />
+    <rect
+       id="rect3773"
+       width="6.3499999"
+       height="1.0583333"
+       x="1.7197917"
+       y="292.23752"
+       style="fill:#ffffff;stroke-width:0.26458332" />
   </g>
   <g
      inkscape:label="Calque 1"

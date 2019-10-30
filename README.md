@@ -3,9 +3,9 @@
 ## Todo
 
 * Styling / icons 
-    * Next / Previous / Back / Info buttons in PicturePage
     * Icons in Info Panel
     * Google Photos styling for AlbumList / Album pages
+    * Mobile view
 * Script for generating albums
     * Inputs:
         * Path to pictures folder

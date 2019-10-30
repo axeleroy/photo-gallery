@@ -14,7 +14,7 @@
    viewBox="0 0 8.4666659 8.4666659"
    version="1.1"
    id="svg8"
-   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   inkscape:version="0.92.4 (f8dce91, 2019-08-02)"
    sodipodi:docname="info-filled.svg">
   <defs
      id="defs2" />
@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="15.839192"
-     inkscape:cx="11.965961"
-     inkscape:cy="13.089095"
+     inkscape:zoom="22.4"
+     inkscape:cx="26.718111"
+     inkscape:cy="14.00089"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -35,9 +35,9 @@
      showguides="false"
      scale-x="1"
      units="px"
-     inkscape:window-width="2560"
-     inkscape:window-height="1371"
-     inkscape:window-x="0"
+     inkscape:window-width="1920"
+     inkscape:window-height="1011"
+     inkscape:window-x="1920"
      inkscape:window-y="32"
      inkscape:window-maximized="1"
      inkscape:pagecheckerboard="true">
@@ -65,9 +65,14 @@
      id="layer1"
      transform="translate(0,-288.53334)">
     <path
-       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.99999994;stroke-opacity:1"
-       d="M 16 1 A 15 15 0 0 0 1 16 A 15 15 0 0 0 16 31 A 15 15 0 0 0 31 16 A 15 15 0 0 0 16 1 z M 16.001953 5.0136719 A 3 3 0 0 1 19.001953 8.0136719 A 3 3 0 0 1 16.001953 11.013672 A 3 3 0 0 1 13.001953 8.0136719 A 3 3 0 0 1 16.001953 5.0136719 z M 15 13 L 17 13 C 18.107985 13 19 13.892015 19 15 L 19 25 C 19 26.107985 18.107985 27 17 27 L 15 27 C 13.892015 27 13 26.107985 13 25 L 13 15 C 13 13.892015 13.892015 13 15 13 z "
+       style="stroke-width:0.99999994;fill:#ffffff"
+       d="M 16 1 A 15 15 0 0 0 1 16 A 15 15 0 0 0 16 31 A 15 15 0 0 0 31 16 A 15 15 0 0 0 16 1 z M 16 8 A 1.9999999 1.9999999 0 0 1 18 10 A 1.9999999 1.9999999 0 0 1 16 12 A 1.9999999 1.9999999 0 0 1 14 10 A 1.9999999 1.9999999 0 0 1 16 8 z M 14.833984 14 L 17.166016 14 C 17.627664 14 18 14.372336 18 14.833984 L 18 23.166016 C 18 23.627664 17.627664 24 17.166016 24 L 14.833984 24 C 14.372336 24 14 23.627664 14 23.166016 L 14 14.833984 C 14 14.372336 14.372336 14 14.833984 14 z "
        transform="matrix(0.26458333,0,0,0.26458333,0,288.53334)"
-       id="path18" />
+       id="path3783" />
   </g>
+  <g
+     transform="translate(0,-288.53334)"
+     id="g24"
+     inkscape:groupmode="layer"
+     inkscape:label="Copie de Calque 1" />
 </svg>
