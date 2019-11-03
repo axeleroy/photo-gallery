@@ -3,4 +3,5 @@ export interface EXIFNumber {
   numerator: number;
 
   toString(radix?: number);
+  valueOf();
 }

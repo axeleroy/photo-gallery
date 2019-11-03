@@ -39,7 +39,7 @@ export class InfoPanelComponent implements OnInit {
   }
 
   numberToString(number: EXIFNumber, fraction?: boolean): string {
-    if (fraction) {
+    if (fraction && number.valueOf() < 1) {
       return number.numerator + '/' + number.denominator;
     } else {
       return number.toString(10);
