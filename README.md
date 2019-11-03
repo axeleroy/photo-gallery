@@ -3,7 +3,6 @@
 ## Todo
 
 * Styling / icons 
-    * Icons in Info Panel
     * Google Photos styling for AlbumList / Album pages
     * Mobile view
 * Script for generating albums
