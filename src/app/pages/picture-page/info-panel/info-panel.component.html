@@ -1,39 +1,35 @@
 <div class="wrapper" *ngIf="exifTags">
   <div class="info">
-    <img class="icon" src="/assets/icons/camera.png" alt="Camera" />
-    <span class="content">{{ exifTags['Model'] }}</span>
-  </div>
-  <div class="info">
-    <img class="icon" src="/assets/icons/aperture.png" alt="Lens" />
-    <span class="content">{{ exifTags['undefined'] }}</span>
-  </div>
-  <div class="info">
-    <img class="icon" src="/assets/icons/aperture.png" alt="Focal length" />
+    <img class="icon" src="/assets/icons/focal-length.svg" alt="Focal length" />
     <span class="content">{{ numberToString(exifTags['FocalLength']) }}mm</span>
   </div>
   <div class="info">
-    <img class="icon" src="/assets/icons/aperture.png" alt="Aperture" />
+    <img class="icon" src="/assets/icons/aperture.svg" alt="Aperture" />
     <span class="content">f/{{ numberToString(exifTags['FNumber']) }}</span>
   </div>
   <div class="info">
-    <img class="icon" src="/assets/icons/aperture.png" alt="Exposure" />
+    <img class="icon" src="/assets/icons/shutter-speed.svg" alt="Shutter speed" />
     <span class="content">{{ numberToString(exifTags['ExposureTime'], true) }}s</span>
   </div>
   <div class="info">
-    <img class="icon" src="/assets/icons/aperture.png" alt="ISO" />
+    <img class="icon" src="/assets/icons/iso.svg" alt="ISO" />
     <span class="content">{{ exifTags['ISOSpeedRatings'] }}</span>
   </div>
   <div class="info">
-    <img class="icon" src="/assets/icons/aperture.png" alt="Mode"/>
+    <img class="icon" src="/assets/icons/exposure-program.svg" alt="Exposure program"/>
     <span class="content">{{ exifTags['ExposureProgram'] }}</span>
   </div>
   <div class="info">
-    <img class="icon" src="/assets/icons/aperture.png" alt="Date"/>
-    <span class="content">{{ exifTags['DateTime'] }}</span>
+    <img class="icon" src="/assets/icons/camera.svg" alt="Camera" />
+    <span class="content">{{ exifTags['Model'] }}</span>
   </div>
   <div class="info">
-    <img class="icon" src="/assets/icons/aperture.png" alt="Dimension" />
-    <span class="content">{{ exifTags['PixelXDimension'] }} x {{ exifTags['PixelYDimension'] }}</span>
+    <img class="icon" src="/assets/icons/lens.svg" alt="Lens" />
+    <span class="content">{{ exifTags['undefined'] }}</span>
+  </div>
+  <div class="info">
+    <img class="icon" src="/assets/icons/date.svg" alt="Date"/>
+    <span class="content">{{ exifTags['DateTime'] }}</span>
   </div>
 
 </div>
