@@ -1,5 +1,8 @@
 import argparse
+import boto3
+from botocore.client import ClientError
 import os
+import json
 import stringcase
 from wand.image import Image
 
@@ -20,7 +23,13 @@ if not os.path.isdir(args.album_folder):
     print(f'ERROR: {args.album_folder} is not a folder')
     exit(1)
 
-# TODO: check that bucket exists
+# Check that bucket exists
+s3 = boto3.client('s3')
+try:
+    s3.head_bucket(Bucket=args.bucket_name)
+except ClientError:
+    print(f'Bucket {args.bucket_name} does not exist or you do not have access to it')
+    exit(1)
 
 print(f'Reading the files in {args.album_folder}')
 
@@ -53,16 +62,21 @@ for picture in pictures:
     picture_filename = os.path.basename(picture)
     with Image(filename=picture) as img:
         with img.clone() as i:
-            i.resize(int(i.width * 0.25), int(i.height * 0.25))
-            i.save(filename=f'{args.album_folder}"/thumbnails/{picture_filename}')
-    print(f'Adding {picture_filename} to {album_name}.json')
-    album_json += {
+            i.resize(int(i.width * 0.10), int(i.height * 0.10))
+            i.save(filename=f'{args.album_folder}/thumbnails/{picture_filename}')
+    print(f'Adding {picture_filename} to album.json')
+    album_json.append({
       'id': "%d" % counter,
       'thumbnailUrl': s3Url + "thumbnails/" + picture_filename,
       'fullsizeUrl': s3Url + picture_filename
-    }
+    })
     counter += 1
 
-# TODO: save JSON
+# Save JSON containing the album's picture
+os.makedirs(os.path.dirname("album.json"), exist_ok=True)
+with open("album.json", 'w+', encoding='utf-8') as out_file:
+    json.dump(album_json, out_file, ensure_ascii=False)
+out_file.close()
+
 # TODO: upload to S3
 # TODO: append album to album list
