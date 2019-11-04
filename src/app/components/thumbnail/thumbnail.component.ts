@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Image } from '../../types/Image';
 
 @Component({
   selector: 'app-thumbnail',
@@ -7,7 +8,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class ThumbnailComponent implements OnInit {
   @Input()
-  private thumbnailUrl: string;
+  private image: Image;
 
   @Input()
   private legend?: string;

@@ -1,5 +1,7 @@
+import { Image } from './Image';
+
 export default interface Picture {
     id: string;
-    thumbnailUrl: string;
-    fullsizeUrl: string;
+    thumbnail: Image;
+    fullsize: Image;
 }
