@@ -60,15 +60,34 @@ s3Url = f'https://{args.bucket_name}.s3.amazonaws.com/{album_name}/'
 for picture in pictures:
     print(f'Creating thumbnail for {picture}')
     picture_filename = os.path.basename(picture)
+
+    height = 0
+    width = 0
+    thumbnail_height = 0
+    thumbnail_width = 0
+
     with Image(filename=picture) as img:
         with img.clone() as i:
-            i.resize(int(i.width * 0.10), int(i.height * 0.10))
+            height = i.height
+            width = i.width
+            thumbnail_height = int(i.width * 0.15)
+            thumbnail_width = int(i.height * 0.15)
+
+            i.resize(thumbnail_width, thumbnail_height)
             i.save(filename=f'{args.album_folder}/thumbnails/{picture_filename}')
     print(f'Adding {picture_filename} to album.json')
     album_json.append({
       'id': "%d" % counter,
-      'thumbnailUrl': s3Url + "thumbnails/" + picture_filename,
-      'fullsizeUrl': s3Url + picture_filename
+      'thumbnail': {
+          'url': s3Url + "thumbnails/" + picture_filename,
+          'height': thumbnail_height,
+          'width': thumbnail_width
+      },
+      'fullsize': {
+          'url': s3Url + picture_filename,
+          'height': height,
+          'width': width
+      }
     })
     counter += 1
 
