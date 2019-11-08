@@ -47,3 +47,6 @@ testem.log
 Thumbs.db
 
 /src/environments/environment.prod.ts
+
+scripts/.idea
+scripts/albums.json
