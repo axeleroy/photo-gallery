@@ -19,7 +19,7 @@ parser.add_argument("--bucket-name", help="Name of AWS S3 bucket the album will 
 args = parser.parse_args()
 
 # Album ID = Album name in lowercase, without any space nor accent
-album_name = unidecode.unidecode(stringcase.alphanumcase(args.album_name).lower())
+album_id = unidecode.unidecode(stringcase.alphanumcase(args.album_name).lower())
 
 
 # Check that album_folder exists
@@ -59,15 +59,19 @@ except FileExistsError:
     if continuing.capitalize() != "Y":
         exit(1)
 
-album_json = []
+album_json = {
+  'id': album_id,
+  'name': args.album_name,
+  'pictures': []
+}
 counter = 1
-s3Url = f'https://{args.bucket_name}.s3.amazonaws.com/{album_name}'
+s3Url = f'https://{args.bucket_name}.s3.amazonaws.com/{album_id}'
 
 
 for picture in pictures:
     picture_filename = os.path.basename(picture)
     print(f'Uploading {picture_filename} to S3')
-    s3.upload_file(picture, args.bucket_name, f'{album_name}/{picture_filename}',
+    s3.upload_file(picture, args.bucket_name, f'{album_id}/{picture_filename}',
                    ExtraArgs={'ACL': 'public-read'})
 
     print(f'Creating thumbnail for {picture_filename}')
@@ -86,11 +90,11 @@ for picture in pictures:
             i.save(filename=thumbnail_path)
 
     print(f'Uploading thumbnail to S3')
-    s3.upload_file(thumbnail_path, args.bucket_name, f'{album_name}/thumbnails/{picture_filename}',
+    s3.upload_file(thumbnail_path, args.bucket_name, f'{album_id}/thumbnails/{picture_filename}',
                    ExtraArgs={'ACL': 'public-read'})
 
     print(f'Adding {picture_filename} to album\'s JSON')
-    album_json.append({
+    album_json['pictures'].append({
       'id': "%d" % counter,
       'thumbnail': {
           'url': f'{s3Url}/thumbnails/{picture_filename}',
@@ -113,7 +117,7 @@ out_file.close()
 
 
 print("Uploading the album's JSON file to S3")
-s3.upload_file(f'{args.album_folder}/album.json', args.bucket_name, f'{album_name}/album.json',
+s3.upload_file(f'{args.album_folder}/album.json', args.bucket_name, f'{album_id}/album.json',
                ExtraArgs={'ACL': 'public-read'})
 
 
@@ -134,9 +138,9 @@ except json.decoder.JSONDecodeError:
 
 # Add the new album at the start of the list
 new_album = [{
-  'id': album_name,
+  'id': album_id,
   'name': args.album_name,
-  'thumbnail': album_json[0]["thumbnail"]
+  'thumbnail': album_json['pictures'][0]['thumbnail']
 }]
 new_album.extend(albums_list)
 
