@@ -11,6 +11,7 @@ import {Subscription} from 'rxjs';
 export class PicturePageComponent implements OnInit, OnDestroy {
   private pictureWrapper: PictureWrapper;
   private subscription: Subscription;
+  private loading = true;
   showInfoPanel = false;
 
   @ViewChild('pictureComponent', { static: false })
@@ -30,6 +31,10 @@ export class PicturePageComponent implements OnInit, OnDestroy {
 
   toggleInfoPanel() {
     this.showInfoPanel = !this.showInfoPanel;
+  }
+
+  loadingStateChange(loading: boolean) {
+    this.loading = loading;
   }
 
   @HostListener('window:keyup', ['$event'])

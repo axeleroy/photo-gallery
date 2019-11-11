@@ -8,12 +8,15 @@
     <div class="nav"></div>
   </ng-template>
 
-  <div class="picture">
+  <div class="picture"
+        [style.backgroundImage]="'url(' + wrapper.picture.thumbnail.url + ')'">
+    <app-loader *ngIf="loading"></app-loader>
     <img
         *ngIf="wrapper?.picture"
         #pictureElement
         [src]="wrapper.picture.fullsize.url"
-        (load)="doNothing()" />
+        [ngClass]="{'picture-loading': loading }"
+        (load)="onLoad()" />
   </div>
 
   <div class="nav" *ngIf="wrapper?.nextPictureId; else emptyNext">

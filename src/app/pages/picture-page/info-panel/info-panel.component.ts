@@ -18,6 +18,8 @@ export class InfoPanelComponent implements OnInit {
     this.updateExif();
   }
 
+  @Input() loading = true;
+
   updateExif() {
     if (this._pictureElement.nativeElement) {
       const img = this._pictureElement.nativeElement;

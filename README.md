@@ -3,9 +3,8 @@
 ## Todo
 
 * Styling / icons 
-    * Google Photos styling for AlbumList / Album pages
-    * Spinner on image loading in the fullscreen viewer
-    * Mobile view
+    * Fix ISO / Exposure Program icons when Roboto is not available on client
+    * Mobile view for info panel
 * Performance
     * Cache requests to album content
 * Bonus:
