@@ -1,0 +1,9 @@
+<div class="list-wrapper">
+  <div class="thumbnail"
+       *ngFor="let thumbnail of list"
+       [style.flex-grow]="flexGrow(thumbnail)">
+    <ng-container
+      *ngTemplateOutlet="thumbnailTemplate, context: { $implicit: thumbnail }">
+    </ng-container>
+  </div>
+</div>

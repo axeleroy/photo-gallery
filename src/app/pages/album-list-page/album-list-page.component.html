@@ -1,6 +1,11 @@
 <div class="album-list">
-  <app-album
-    *ngFor="let album of albums"
-    [album]="album" >
-  </app-album>
+  <app-thumbnail-list
+    [list]="albums"
+    [imageFn]="getThumbnail">
+    <ng-template #thumbnail let-thumbnail>
+      <app-album
+        [album]="thumbnail">
+      </app-album>
+    </ng-template>
+  </app-thumbnail-list>
 </div>

@@ -13,6 +13,7 @@ import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.com
 import {PicturePageComponent} from "./pages/picture-page/picture-page.component";
 import { FullscreenPictureComponent } from './pages/picture-page/fullscreen-picture/fullscreen-picture.component';
 import { InfoPanelComponent } from './pages/picture-page/info-panel/info-panel.component';
+import { ThumbnailListComponent } from './components/thumbnail-list/thumbnail-list.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { InfoPanelComponent } from './pages/picture-page/info-panel/info-panel.c
     NotFoundPageComponent,
     PicturePageComponent,
     FullscreenPictureComponent,
-    InfoPanelComponent
+    InfoPanelComponent,
+    ThumbnailListComponent
   ],
   imports: [
     BrowserModule,
