@@ -1,4 +1,5 @@
-<div class="wrapper" *ngIf="exifTags">
+<app-loader *ngIf="!exifTags || loading"></app-loader>
+<div class="wrapper" *ngIf="exifTags && !loading">
   <div class="info">
     <img class="icon" src="/assets/icons/focal-length.svg" alt="Focal length" />
     <span class="content">{{ numberToString(exifTags['FocalLength']) }}mm</span>
@@ -31,5 +32,4 @@
     <img class="icon" src="/assets/icons/date.svg" alt="Date"/>
     <span class="content">{{ exifTags['DateTime'] }}</span>
   </div>
-
 </div>

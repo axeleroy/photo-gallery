@@ -44,4 +44,5 @@ app-fullscreen-picture {
 .info-panel {
   background-color: white;
   color: black;
+  display: inherit;
 }

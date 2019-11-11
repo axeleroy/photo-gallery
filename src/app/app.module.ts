@@ -14,6 +14,7 @@ import {PicturePageComponent} from "./pages/picture-page/picture-page.component"
 import { FullscreenPictureComponent } from './pages/picture-page/fullscreen-picture/fullscreen-picture.component';
 import { InfoPanelComponent } from './pages/picture-page/info-panel/info-panel.component';
 import { ThumbnailListComponent } from './components/thumbnail-list/thumbnail-list.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ThumbnailListComponent } from './components/thumbnail-list/thumbnail-li
     PicturePageComponent,
     FullscreenPictureComponent,
     InfoPanelComponent,
-    ThumbnailListComponent
+    ThumbnailListComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

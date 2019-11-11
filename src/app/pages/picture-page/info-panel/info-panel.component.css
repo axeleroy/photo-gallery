@@ -17,3 +17,7 @@
 .content {
   padding: .25em 1em;
 }
+
+app-loader {
+  margin: auto;
+}

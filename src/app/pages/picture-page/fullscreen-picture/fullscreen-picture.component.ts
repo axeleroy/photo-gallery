@@ -7,9 +7,17 @@ import {PictureWrapper} from '../../../types/PictureWrapper';
   styleUrls: ['./fullscreen-picture.component.css']
 })
 export class FullscreenPictureComponent implements OnInit {
+  private wrapper: PictureWrapper;
+  loading = true;
+
+  @Output() loadingStateChange = new EventEmitter<boolean>();
 
   @Input()
-  private wrapper: PictureWrapper;
+  set picture(input: PictureWrapper) {
+    this.loading = true;
+    this.loadingStateChange.emit(true)
+    this.wrapper = input;
+  }
 
   @ViewChild('pictureElement', { static: false })
   public pictureElement: ElementRef;
@@ -20,9 +28,11 @@ export class FullscreenPictureComponent implements OnInit {
   }
 
   /**
-   * Weird hack: if (load) is used, then Angular correctly updates the ElementRef all the way to InfoPanelComponent.
+   * Stop displaying the thumbnail and loader once the fullsize image has loaded.
    */
-  doNothing(){
+  onLoad() {
+    this.loading = false;
+    this.loadingStateChange.emit(false);
   }
 
 }
