@@ -1,0 +1,11 @@
+.thumbnail {
+  height: 100%;
+  width: 100%;
+}
+
+.thumbnail-img {
+  max-height: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  object-fit: cover;
+}
