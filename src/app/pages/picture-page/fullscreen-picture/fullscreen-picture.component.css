@@ -4,6 +4,12 @@
   height: inherit;
 }
 
+@media screen and (max-width: 800px) {
+  .wrapper {
+    grid-template-columns: 2em 1fr 2em;
+  }
+}
+
 .picture {
   display: flex;
   height: inherit;
@@ -24,14 +30,11 @@
 
 .nav {
   margin: auto;
-  vertical-align: middle;
-  align-content: center;
 }
 
 .nav a {
   color: white;
   text-decoration: none;
-  padding: 1em;
 }
 
 app-loader {
