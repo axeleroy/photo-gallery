@@ -2,8 +2,7 @@
 
 ## Todo
 
-* Styling / icons 
-    * Fix ISO / Exposure Program icons when Roboto is not available on client
+* Add optionnal parameters to the album creation script to downsize fullsize pictures and set custom thumbnail size
 * Performance
     * Cache requests to album content
 * Bonus:
