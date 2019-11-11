@@ -15,7 +15,7 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.4 (f8dce91, 2019-08-02)"
-   sodipodi:docname="exposure-mode2.svg">
+   sodipodi:docname="exposure-program.svg">
   <defs
      id="defs2" />
   <sodipodi:namedview
@@ -26,7 +26,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="32"
-     inkscape:cx="15.908325"
+     inkscape:cx="9.252075"
      inkscape:cy="14.333035"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
@@ -55,7 +55,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -69,17 +69,15 @@
        d="M 18.988281 1.3007812 A 3 2.4999999 0 0 1 19 1.5 A 3 2.4999999 0 0 1 16 4 A 3 2.4999999 0 0 1 13 1.5 A 3 2.4999999 0 0 1 13.011719 1.3183594 A 15 15 0 0 0 7.7558594 3.5097656 A 2.4999999 3 45 0 1 7.859375 3.6035156 A 2.4999999 3 45 0 1 7.5058594 7.4921875 A 2.4999999 3 45 0 1 3.6171875 7.8457031 A 2.4999999 3 45 0 1 3.5214844 7.7382812 A 15 15 0 0 0 1.3300781 12.974609 A 2.4999999 3 0 0 1 1.46875 12.96875 A 2.4999999 3 0 0 1 3.96875 15.96875 A 2.4999999 3 0 0 1 1.46875 18.96875 A 2.4999999 3 0 0 1 1.3027344 18.958984 A 15 15 0 0 0 3.4765625 24.214844 A 3 2.4999999 45 0 1 3.5722656 24.109375 A 3 2.4999999 45 0 1 7.4609375 24.462891 A 3 2.4999999 45 0 1 7.8144531 28.351562 A 3 2.4999999 45 0 1 7.6933594 28.458984 A 15 15 0 0 0 12.945312 30.667969 A 3 2.4999999 0 0 1 12.9375 30.5 A 3 2.4999999 0 0 1 15.9375 28 A 3 2.4999999 0 0 1 18.9375 30.5 A 3 2.4999999 0 0 1 18.925781 30.701172 A 15 15 0 0 0 24.21875 28.523438 A 2.4999999 3 45 0 1 24.078125 28.396484 A 2.4999999 3 45 0 1 24.431641 24.507812 A 2.4999999 3 45 0 1 28.320312 24.154297 A 2.4999999 3 45 0 1 28.457031 24.308594 A 15 15 0 0 0 30.675781 19.019531 A 2.4999999 3 0 0 1 30.46875 19.03125 A 2.4999999 3 0 0 1 27.96875 16.03125 A 2.4999999 3 0 0 1 30.46875 13.03125 A 2.4999999 3 0 0 1 30.701172 13.044922 A 15 15 0 0 0 28.503906 7.7324219 A 3 2.4999999 45 0 1 28.365234 7.890625 A 3 2.4999999 45 0 1 24.476562 7.5371094 A 3 2.4999999 45 0 1 24.123047 3.6484375 A 3 2.4999999 45 0 1 24.283203 3.5078125 A 15 15 0 0 0 18.988281 1.3007812 z "
        transform="matrix(0.26458333,0,0,0.26458333,0,288.53334)"
        id="path4213" />
-    <text
-       xml:space="preserve"
+    <g
+       aria-label="P"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Roboto;-inkscape-font-specification:Roboto;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="2.778125"
-       y="294.27148"
-       id="text4385"><tspan
-         sodipodi:role="line"
-         id="tspan4383"
-         x="2.778125"
-         y="294.27148"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;font-family:Roboto;-inkscape-font-specification:Roboto;fill:#ffffff;stroke-width:0.26458332">P</tspan></text>
+       id="text4385">
+      <path
+         d="m 3.5574056,293.06432 v 1.20716 H 3.1501953 v -3.00963 h 1.1513509 q 0.4816243,0 0.7482747,0.24805 0.2666504,0.24804 0.2666504,0.65319 0,0.41134 -0.2666504,0.65732 -0.2666504,0.24391 -0.7482747,0.24391 z m 0,-0.31832 h 0.7441406 q 0.3059245,0 0.4568196,-0.1633 0.1508952,-0.16537 0.1508952,-0.41548 0,-0.25011 -0.1529622,-0.41755 -0.1508952,-0.16743 -0.4547526,-0.16743 H 3.5574056 Z"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;font-family:Roboto;-inkscape-font-specification:Roboto;fill:#ffffff;stroke-width:0.26458332"
+         id="path140" />
+    </g>
   </g>
   <g
      transform="translate(0,-288.53334)"
