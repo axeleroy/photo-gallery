@@ -46,3 +46,27 @@ app-fullscreen-picture {
   color: black;
   display: inherit;
 }
+
+/* Display info panel bellow the picture on mobile */
+@media screen and (max-width: 800px) {
+  .viewer {
+    height: calc(100vh - 3em);
+    grid-template-columns: unset;
+    grid-template-rows: 1fr 10em;
+  }
+
+  .info-panel {
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  app-fullscreen-picture {
+    height: calc(100vh - 13em);
+  }
+
+  .span-2-cols {
+    grid-column: unset;
+    grid-row: span 2;
+    height: calc(100vh - 3em);
+  }
+}
