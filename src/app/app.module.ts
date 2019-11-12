@@ -10,7 +10,7 @@ import { AlbumListPageComponent } from './pages/album-list-page/album-list-page.
 import { AlbumPageComponent } from './pages/album-page/album-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
-import {PicturePageComponent} from "./pages/picture-page/picture-page.component";
+import {PicturePageComponent} from './pages/picture-page/picture-page.component';
 import { FullscreenPictureComponent } from './pages/picture-page/fullscreen-picture/fullscreen-picture.component';
 import { InfoPanelComponent } from './pages/picture-page/info-panel/info-panel.component';
 import { ThumbnailListComponent } from './components/thumbnail-list/thumbnail-list.component';
