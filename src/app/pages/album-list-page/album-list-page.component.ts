@@ -4,7 +4,7 @@ import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {Subscription} from 'rxjs';
-import {Image} from "../../types/Image";
+import {Image} from '../../types/Image';
 
 @Component({
   selector: 'app-album-list-page',
