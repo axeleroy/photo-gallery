@@ -5,6 +5,8 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {Subscription} from 'rxjs';
 import {Image} from '../../types/Image';
+import {CachedRequest} from '../../cache/cached-request';
+import {db} from '../../cache/app-database';
 
 @Component({
   selector: 'app-album-list-page',
@@ -26,7 +28,8 @@ export class AlbumListPageComponent implements OnInit, OnDestroy {
               private http: HttpClient) { }
 
   ngOnInit() {
-    this.subscription = this.http.get(environment.albumListUrl)
+    this.subscription = new CachedRequest<Album[]>(this.http)
+      .fetch(db.list, 'list', environment.albumListUrl, 1)
       .subscribe((albumList: Album[]) => this.albums = albumList);
   }
 
