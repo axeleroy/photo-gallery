@@ -29,7 +29,7 @@ export class ThumbnailListComponent implements OnInit {
 
   flexGrow(input: any) {
     const image: Image = this.imageFn(input);
-    return image.width * 100 / image.height;
+    return Math.trunc(image.width * 100 / image.height);
   }
 
 }
