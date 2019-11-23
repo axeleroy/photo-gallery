@@ -113,7 +113,7 @@ for picture in pictures:
 
         print(f'Adding {picture_filename} to album\'s JSON')
         album_json['pictures'].append({
-            'id': f'counter',
+            'id': f'{counter}',
             'thumbnail': {
                 'url': f'{s3Url}/thumbnails/{picture_filename}',
                 'height': thumbnail_height,
