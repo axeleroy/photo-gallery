@@ -13,7 +13,7 @@ export class AlbumPageComponent implements OnInit {
   /**
    * Album to display.
    */
-  private album: AlbumContent;
+  album: AlbumContent;
 
   constructor(private route: ActivatedRoute) { }
 

@@ -9,9 +9,9 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./picture-page.component.css']
 })
 export class PicturePageComponent implements OnInit, OnDestroy {
-  private pictureWrapper: PictureWrapper;
   private subscription: Subscription;
-  private loading = true;
+  pictureWrapper: PictureWrapper;
+  loading = true;
   showInfoPanel = false;
 
   @ViewChild('pictureComponent', { static: false })

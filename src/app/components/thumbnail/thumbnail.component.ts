@@ -8,10 +8,10 @@ import { Image } from '../../types/Image';
 })
 export class ThumbnailComponent implements OnInit {
   @Input()
-  private image: Image;
+  image: Image;
 
   @Input()
-  private legend?: string;
+  legend?: string;
 
   constructor() { }
 

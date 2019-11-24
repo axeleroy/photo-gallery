@@ -9,7 +9,7 @@ import Picture from '../../../types/Picture';
 export class PictureThumbnailComponent implements OnInit {
 
   @Input()
-  private picture: Picture;
+  picture: Picture;
 
   constructor() { }
 
