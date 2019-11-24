@@ -13,9 +13,6 @@
 .picture {
   display: flex;
   height: inherit;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
 }
 
 .picture img {
