@@ -22,7 +22,7 @@ export class AlbumListPageComponent implements OnInit, OnDestroy {
   /**
    * List of album to display.
    */
-  private albums: Album[];
+  albums: Album[];
 
   constructor(private router: Router,
               private http: HttpClient) { }

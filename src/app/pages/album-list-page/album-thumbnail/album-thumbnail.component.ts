@@ -9,7 +9,7 @@ import Album from '../../../types/Album';
 export class AlbumThumbnailComponent implements OnInit {
 
   @Input()
-  private album: Album;
+  album: Album;
 
   constructor() { }
 

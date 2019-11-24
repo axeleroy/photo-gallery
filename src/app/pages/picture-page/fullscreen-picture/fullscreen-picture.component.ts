@@ -7,7 +7,7 @@ import {PictureWrapper} from '../../../types/PictureWrapper';
   styleUrls: ['./fullscreen-picture.component.css']
 })
 export class FullscreenPictureComponent implements OnInit {
-  private wrapper: PictureWrapper;
+  wrapper: PictureWrapper;
   loading = true;
 
   @Output() loadingStateChange = new EventEmitter<boolean>();
