@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {AlbumListPageComponent} from './pages/album-list-page/album-list-page.component';
 import {AlbumPageComponent} from './pages/album-page/album-page.component';
 import {AlbumService} from './services/album/album.service';
