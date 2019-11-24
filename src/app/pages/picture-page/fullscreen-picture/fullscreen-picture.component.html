@@ -8,8 +8,7 @@
     <div class="nav"></div>
   </ng-template>
 
-  <div class="picture"
-        [style.backgroundImage]="'url(' + wrapper.picture.thumbnail.url + ')'">
+  <div class="picture">
     <app-loader *ngIf="loading"></app-loader>
     <img
         *ngIf="wrapper?.picture"
