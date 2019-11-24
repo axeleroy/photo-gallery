@@ -23,6 +23,7 @@ export class AlbumListPageComponent implements OnInit, OnDestroy {
    * List of album to display.
    */
   albums: Album[];
+  environment = environment;
 
   constructor(private router: Router,
               private http: HttpClient) { }
