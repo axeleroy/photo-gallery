@@ -1,5 +1,5 @@
 import {Component, ContentChild, Input, OnInit, TemplateRef} from '@angular/core';
-import { Image } from '../../types/Image'
+import {Image} from '../../types/Image'
 
 @Component({
   selector: 'app-thumbnail-list',
