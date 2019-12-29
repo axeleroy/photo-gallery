@@ -6,6 +6,7 @@ import {AlbumService} from './services/album/album.service';
 import {NotFoundPageComponent} from './pages/not-found-page/not-found-page.component';
 import {PicturePageComponent} from './pages/picture-page/picture-page.component';
 import {PictureService} from './services/picture/picture.service';
+import {environment} from "../environments/environment";
 
 const routes: Routes = [
   {
@@ -42,7 +43,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: environment.useHash })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

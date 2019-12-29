@@ -3,5 +3,6 @@ export interface AppConfig {
   albumListUrl: string;
   albumBaseUrl: string;
   albumFileNameUrl: string;
+  useHash: boolean;
   isProduction: boolean;
 }
