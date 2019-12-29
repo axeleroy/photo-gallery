@@ -16,6 +16,9 @@ parser.add_argument("--album-folder", help="Path to the folder containing the pi
                                            "from", required=True)
 parser.add_argument("--album-name", help="Name of the new album", required=True)
 parser.add_argument("--bucket-name", help="Name of AWS S3 bucket the album will be uploaded to", required=True)
+parser.add_argument("--cloudfront-domain", help="Domain of the CloudFront distribution pointing to the S3 bucket.\n"
+                                                "Example: xxxxxxxx.cloudfront.net or sub.domain.tld if you added a "
+                                                "CNAME to your CloudFront distribution.")
 parser.add_argument("--fullsize-ratio", type=float, help="If set, the ratio at which the fullsize pictures are "
                                                          "reduced. For example, 0.3 will reduce a 24MP picture 30% "
                                                          "into a ~8MP picture.")
@@ -65,7 +68,10 @@ album_json = {
   'pictures': []
 }
 counter = 1
-s3Url = f'https://{args.bucket_name}.s3.amazonaws.com/{album_id}'
+if args.cloudfront_domain:
+    s3Url = f'https://{args.cloudfront_domain}/{album_id}'
+else:
+    s3Url = f'https://{args.bucket_name}.s3.amazonaws.com/{album_id}'
 
 
 for picture in pictures:
