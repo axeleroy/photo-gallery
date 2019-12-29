@@ -10,6 +10,7 @@ export const environment = {
   albumListUrl: 'https://axel-leroy-sh-pictures-storage.s3.eu-central-1.amazonaws.com/albums.json',
   albumBaseUrl: 'https://axel-leroy-sh-pictures-storage.s3.eu-central-1.amazonaws.com/',
   albumFileNameUrl: '/album.json',
+  useHash: false,
   isProduction: false
 } as AppConfig;
 
