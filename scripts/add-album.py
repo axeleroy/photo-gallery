@@ -1,7 +1,9 @@
 import argparse
 import boto3
 from botocore.client import ClientError
+from datetime import datetime
 from io import BytesIO
+import math
 import os
 import json
 import stringcase
@@ -16,9 +18,9 @@ parser.add_argument("--album-folder", help="Path to the folder containing the pi
                                            "from", required=True)
 parser.add_argument("--album-name", help="Name of the new album", required=True)
 parser.add_argument("--bucket-name", help="Name of AWS S3 bucket the album will be uploaded to", required=True)
-parser.add_argument("--cloudfront-domain", help="Domain of the CloudFront distribution pointing to the S3 bucket.\n"
-                                                "Example: xxxxxxxx.cloudfront.net or sub.domain.tld if you added a "
-                                                "CNAME to your CloudFront distribution.")
+parser.add_argument("--cloudfront-id", help="ID of the CloudFront distribution pointing to the S3 bucket.\n"
+                                            "If set, the pictures in the JSON will be fetched from the distribution's "
+                                            "Domain Name")
 parser.add_argument("--fullsize-ratio", type=float, help="If set, the ratio at which the fullsize pictures are "
                                                          "reduced. For example, 0.3 will reduce a 24MP picture 30% "
                                                          "into a ~8MP picture.")
@@ -68,11 +70,19 @@ album_json = {
   'pictures': []
 }
 counter = 1
-if args.cloudfront_domain:
-    s3Url = f'https://{args.cloudfront_domain}/{album_id}'
-else:
-    s3Url = f'https://{args.bucket_name}.s3.amazonaws.com/{album_id}'
 
+# Setting Cloudfront and base URL
+cloudfront = None
+distribution = None
+baseUrl = f'https://{args.bucket_name}.s3.amazonaws.com/{album_id}'
+if args.cloudfront_id:
+    cloudfront = boto3.client('cloudfront')
+    try:
+        distribution = cloudfront.get_distribution(Id=args.cloudfront_id)
+        baseUrl = f'https://{distribution["DomainName"]}/{album_id}'
+    except ClientError:
+        print(f'Cloudfront distribution {args.cloudfront_id} does not exist or you do not have access to it.')
+        print("Using the S3 bucket URL instead")
 
 for picture in pictures:
     picture_filename = os.path.basename(picture)
@@ -121,12 +131,12 @@ for picture in pictures:
         album_json['pictures'].append({
             'id': f'{counter}',
             'thumbnail': {
-                'url': f'{s3Url}/thumbnails/{picture_filename}',
+                'url': f'{baseUrl}/thumbnails/{picture_filename}',
                 'height': thumbnail_height,
                 'width': thumbnail_width
             },
             'fullsize': {
-                'url': f'{s3Url}/{picture_filename}',
+                'url': f'{baseUrl}/{picture_filename}',
                 'height': height,
                 'width': width
             }
@@ -137,6 +147,19 @@ print("\nUploading the album's JSON file to S3")
 json_obj = s3.Object(args.bucket_name, f'{album_id}/album.json')
 json_obj.put(Body=json.dumps(album_json), ACL='public-read')
 
+if distribution:
+    print(f'\nInvalidating Cloudfront distribution {distribution["Id"]}')
+    cloudfront.create_invalidation(
+        DistributionId=distribution["Id"],
+        InvalidationBatch={
+          'Paths': {
+            'Quantity': 123,
+            'Items': [
+              f'/{album_id}/*',
+            ]
+          },
+          'CallerReference': math.trunc(datetime.timestamp(datetime.now()))
+        })
 
 print(f'\nAppending album to {args.albums_list}')
 try:
