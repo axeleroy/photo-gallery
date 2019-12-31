@@ -22,8 +22,8 @@ parser.add_argument("--cloudfront-id", help="ID of the CloudFront distribution p
                                             "If set, the pictures in the JSON will be fetched from the distribution's "
                                             "Domain Name")
 parser.add_argument("--fullsize-ratio", type=float, help="If set, the ratio at which the fullsize pictures are "
-                                                         "reduced. For example, 0.3 will reduce a 24MP picture 30% "
-                                                         "into a ~8MP picture.")
+                                                         "reduced. For example, 0.3 will reduce a 24MP picture "
+                                                         "30 percent into a ~8MP picture.")
 parser.add_argument("--thumbnail-ratio", type=float, default=0.1, help="Ratio at which the thumbnail pictures are "
                                                                        "reduced from the original picture. Default"
                                                                        "is 0.1 (10 percent the original size)")
@@ -94,7 +94,7 @@ for picture in pictures:
         print(f'\nWorking on image {counter} out of {len(pictures)}')
 
         if args.fullsize_ratio:
-            print(f'Reducing {picture_filename} to {int(args.fullsize_ratio * 100)} %')
+            print(f'Reducing {picture_filename} to {int(args.fullsize_ratio * 100)} %%')
             with img.clone() as fullsize:
                 height = int(height * args.fullsize_ratio)
                 width = int(width * args.fullsize_ratio)
@@ -115,7 +115,7 @@ for picture in pictures:
                 ExtraArgs={'ACL': 'public-read'})
 
         with img.clone() as thumbnail:
-            print(f'Creating a thumbnail {int(args.thumbnail_ratio * 100)} % the size of the original')
+            print(f'Creating a thumbnail {int(args.thumbnail_ratio * 100)} %% the size of the original')
             thumbnail_height = int(img.height * args.thumbnail_ratio)
             thumbnail_width = int(img.width * args.thumbnail_ratio)
 
