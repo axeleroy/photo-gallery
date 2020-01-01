@@ -6,9 +6,9 @@ import {AppConfig} from './AppConfig';
 
 export const environment = {
   // tslint:disable:max-line-length
-  albumListPageTitle: 'Albums',
-  albumListUrl: 'https://axel-leroy-sh-pictures-storage.s3.eu-central-1.amazonaws.com/albums.json',
-  albumBaseUrl: 'https://axel-leroy-sh-pictures-storage.s3.eu-central-1.amazonaws.com/',
+  albumListPageTitle: 'PhotoGallery',
+  albumListUrl: 'https://my-wonderful-website.com/assets/albums.json',
+  albumBaseUrl: 'https://my-bucket.s3.eu-central-1.amazonaws.com/',
   albumFileNameUrl: '/album.json',
   useHash: false,
   isProduction: false
