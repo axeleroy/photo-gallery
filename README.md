@@ -98,6 +98,7 @@ Given a folder containing pictures you want to add to an album, it
 
 It is located in `/scripts` and requires
  * Python 3.6+
+ * [ImageMagick](http://docs.wand-py.org/en/0.5.7/guide/install.html)
  * a few dependencies you have to install using `pip install -r requirements.txt`
  * and to set up [your AWS credentials](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/quickstart.html#configuration)
 
