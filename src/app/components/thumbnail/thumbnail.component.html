@@ -1,4 +1,4 @@
-<div class="thumbnail">
+<div class="thumbnail" [ngClass]="{ 'has-legend' : !!legend }">
   <img class="thumbnail-img"
        [src]="image.url"
        [alt]="legend" />
