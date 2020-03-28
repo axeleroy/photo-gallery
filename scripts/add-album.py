@@ -83,6 +83,7 @@ def treat_picture(album_id, album_json, args, base_url, counter, picture, s3_cli
 
     # Open the picture using Wand / ImageMagick
     with Image(filename=picture) as img:
+        img.auto_orient()  # Orient the picture from the EXIF
         with img.clone() as thumbnail:
             thumbnail_width, thumbnail_height = convert_and_upload_picture(thumbnail, f'{album_id}/thumbnails',
                                                                            picture_filename, args.thumbnail_ratio,
@@ -123,7 +124,7 @@ def main():
     pictures = []
     for r, d, f in os.walk(args.album_folder):
         for file in f:
-            if '.jpg' in file:
+            if '.jpg' in file.lower():
                 pictures.append(os.path.join(r, file))
 
     if not len(pictures):
