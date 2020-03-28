@@ -1,7 +1,7 @@
 <app-loader *ngIf="!exifTags || loading"></app-loader>
 <div class="wrapper" *ngIf="exifTags && !loading">
   <div class="info">
-    <img class="icon" src="/assets/icons/focal-length.svg" alt="Focal length" />
+    <img class="icon" src="/assets/icons/lens.svg" alt="Focal length" />
     <span class="content">{{ numberToString(exifTags['FocalLength']) }}mm</span>
   </div>
   <div class="info">
@@ -22,14 +22,6 @@
   </div>
   <div class="info">
     <img class="icon" src="/assets/icons/camera.svg" alt="Camera" />
-    <span class="content">{{ exifTags['Model'] }}</span>
-  </div>
-  <div class="info">
-    <img class="icon" src="/assets/icons/lens.svg" alt="Lens" />
-    <span class="content">{{ exifTags['undefined'] }}</span>
-  </div>
-  <div class="info">
-    <img class="icon" src="/assets/icons/date.svg" alt="Date"/>
-    <span class="content">{{ exifTags['DateTime'] }}</span>
+    <span class="content">{{ exifTags['Make'] }} {{ exifTags['Model'] }}</span>
   </div>
 </div>
