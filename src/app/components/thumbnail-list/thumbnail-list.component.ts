@@ -1,4 +1,4 @@
-import {Component, ContentChild, Input, OnInit, TemplateRef} from '@angular/core';
+import {Component, ContentChild, Input, TemplateRef} from '@angular/core';
 import {Image} from '../../types/Image'
 
 @Component({
@@ -6,7 +6,7 @@ import {Image} from '../../types/Image'
   templateUrl: './thumbnail-list.component.html',
   styleUrls: ['./thumbnail-list.component.css']
 })
-export class ThumbnailListComponent implements OnInit {
+export class ThumbnailListComponent {
   /**
    * List of Album or Picture to display.
    */
@@ -22,14 +22,9 @@ export class ThumbnailListComponent implements OnInit {
    */
   @ContentChild('thumbnail', { static: false }) thumbnailTemplate: TemplateRef<any>;
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-  flexGrow(input: any) {
+  ratio(input: any) {
     const image: Image = this.imageFn(input);
-    return Math.trunc(image.width * 100 / image.height);
+    return 240 / (image.height / image.width);
   }
 
 }

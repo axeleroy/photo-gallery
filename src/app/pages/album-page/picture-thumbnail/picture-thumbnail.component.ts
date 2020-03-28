@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import Picture from '../../../types/Picture';
 
 @Component({
@@ -6,14 +6,9 @@ import Picture from '../../../types/Picture';
   templateUrl: './picture-thumbnail.component.html',
   styleUrls: ['./picture-thumbnail.component.css']
 })
-export class PictureThumbnailComponent implements OnInit {
+export class PictureThumbnailComponent {
 
   @Input()
   picture: Picture;
-
-  constructor() { }
-
-  ngOnInit() {
-  }
 
 }

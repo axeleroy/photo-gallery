@@ -21,7 +21,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: AlbumPageComponent,
+        component: AlbumPageComponent
       },
       {
         path: 'picture/:pictureId',

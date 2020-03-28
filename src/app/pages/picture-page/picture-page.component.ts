@@ -1,4 +1,4 @@
-import {Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, HostListener, OnDestroy, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {PictureWrapper} from '../../types/PictureWrapper';
 import {Subscription} from 'rxjs';
@@ -8,7 +8,7 @@ import {Subscription} from 'rxjs';
   templateUrl: './picture-page.component.html',
   styleUrls: ['./picture-page.component.css']
 })
-export class PicturePageComponent implements OnInit, OnDestroy {
+export class PicturePageComponent implements OnDestroy {
   private subscription: Subscription;
   pictureWrapper: PictureWrapper;
   loading = true;
@@ -20,9 +20,6 @@ export class PicturePageComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute,
               private router: Router) {
     this.subscription = this.route.data.subscribe((data) => this.pictureWrapper = data.picture);
-  }
-
-  ngOnInit() {
   }
 
   ngOnDestroy() {

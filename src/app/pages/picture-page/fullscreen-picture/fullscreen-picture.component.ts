@@ -1,4 +1,4 @@
-import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {PictureWrapper} from '../../../types/PictureWrapper';
 
 @Component({
@@ -6,7 +6,7 @@ import {PictureWrapper} from '../../../types/PictureWrapper';
   templateUrl: './fullscreen-picture.component.html',
   styleUrls: ['./fullscreen-picture.component.css']
 })
-export class FullscreenPictureComponent implements OnInit {
+export class FullscreenPictureComponent {
   wrapper: PictureWrapper;
   loading = true;
 
@@ -21,11 +21,6 @@ export class FullscreenPictureComponent implements OnInit {
 
   @ViewChild('pictureElement', { static: false })
   public pictureElement: ElementRef;
-
-  constructor() { }
-
-  ngOnInit() {
-  }
 
   /**
    * Stop displaying the thumbnail and loader once the fullsize image has loaded.
