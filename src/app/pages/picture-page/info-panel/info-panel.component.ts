@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, Input} from '@angular/core';
 // @ts-ignore
 import EXIF from 'exif-js';
 import {EXIFNumber} from "../../../types/EXIFNumber";
@@ -8,7 +8,7 @@ import {EXIFNumber} from "../../../types/EXIFNumber";
   templateUrl: './info-panel.component.html',
   styleUrls: ['./info-panel.component.css']
 })
-export class InfoPanelComponent implements OnInit {
+export class InfoPanelComponent {
   exifTags: any;
   _pictureElement: ElementRef;
 
@@ -33,11 +33,6 @@ export class InfoPanelComponent implements OnInit {
         self.exifTags  = EXIF.getAllTags(this);
       });
     }
-  }
-
-  constructor() { }
-
-  ngOnInit() {
   }
 
   numberToString(number: EXIFNumber, fraction?: boolean): string {

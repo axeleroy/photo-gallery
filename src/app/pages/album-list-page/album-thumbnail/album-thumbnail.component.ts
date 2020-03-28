@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import Album from '../../../types/Album';
 
 @Component({
@@ -6,14 +6,9 @@ import Album from '../../../types/Album';
   templateUrl: './album-thumbnail.component.html',
   styleUrls: ['./album-thumbnail.component.css']
 })
-export class AlbumThumbnailComponent implements OnInit {
+export class AlbumThumbnailComponent {
 
   @Input()
   album: Album;
-
-  constructor() { }
-
-  ngOnInit() {
-  }
 
 }
