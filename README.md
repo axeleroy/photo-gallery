@@ -1,13 +1,17 @@
 # PhotoGallery
 
-A minimal photo gallery intended for use with static websites.
+A minimal photo gallery mimicking Google Photos' style and intended for use with static websites.
+
+### Demo _(in production!)_
+[axel.leroy.sh/photography](https://axel.leroy.sh/photography)
 
 ## Goals and functionalities
 When working on this project, my goals were to make this photo gallery
-* Embeddable in a static website.
+* Embeddable in a static website hosted on AWS (S3 & Cloudfront).
 * Functionaly minimal: it should just display albums and pictures with relevant EXIF data.
 * (relatively) Lightweight with minimal dependancies, with notably no CSS framework involved.
-* Fast performance, with small thumbnails and HTTP requests caching.
+* Efficient, with small thumbnails and HTTP requests caching.
+* Look like Google Photo's album grid.
 
 ### What are not goals of this project
 * Being user friendly: there's no GUI to manage albums and pictures.
@@ -92,7 +96,7 @@ In order to easily upload pictures and create the JSONs, I created a Python scri
 
 Given a folder containing pictures you want to add to an album, it
 * generates thumbnails
-* generates a JSON file describing the album (see [How it Works](#how-it-works))
+* generates a JSON file describing the album's content (see [How it Works](#how-it-works))
 * uploads the JSON, pictures and the thumbnails to the given S3 bucket (all under `s3://bucket-name/album-name/`)
 * updates the albums list JSON with the new album on top
 
@@ -138,5 +142,5 @@ npm build [--prod] --baseHref=/base-folder --deployUrl=/assets/
 
 Then take everything in `/dist/photo-gallery` and deploy anywhere you want !
 
-**Note:** make sure the `assets` folder containing the is at the root of you website.
+**Note:** make sure the `assets` folder containing the icons is at the root of you website.
 Edit the code if you want the icons to be stored somewhere else.
