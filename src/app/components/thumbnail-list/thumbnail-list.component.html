@@ -1,10 +1,10 @@
 <div class="list-wrapper">
-  <div class="thumbnail"
+  <div class="thumbnail-list-item"
        *ngFor="let thumbnail of list"
        [ngStyle]="{ 'flex': ratio(thumbnail), 'min-width': '' + ratio(thumbnail) + 'px' }">
     <ng-container
       *ngTemplateOutlet="thumbnailTemplate, context: { $implicit: thumbnail }">
     </ng-container>
   </div>
-  <div class="placeholder"></div>
+  <div class="thumbnail-list-end"></div>
 </div>
