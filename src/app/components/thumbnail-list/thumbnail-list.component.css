@@ -3,18 +3,18 @@
   flex-wrap: wrap;
 }
 
-.thumbnail {
+.thumbnail-list-item {
   margin: 0.15em;
 }
 
 /* Because a thumbnail min-width can be greater than view width on mobile,
    override it to fill the parent (which fills the screen width) */
 @media screen and (max-width: 500px) {
-  .thumbnail {
+  .thumbnail-list-item {
     min-width: 100% !important;
   }
 }
 
-.placeholder {
+.thumbnail-list-end {
   flex-grow: 99999;
 }
