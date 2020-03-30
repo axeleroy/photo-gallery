@@ -1,6 +1,11 @@
-<div class="thumbnail" [ngClass]="{ 'has-legend' : !!legend }">
-  <img class="thumbnail-img"
-       [src]="image.url"
-       [alt]="legend" />
+<div class="thumbnail-item" [ngClass]="{ 'has-legend' : !!legend }">
+  <div class="thumbnail-bg">
+    <img class="thumbnail-img"
+         decoding="async"
+         [src]="image.url"
+         [alt]="legend ? legend : ''"
+         [width]="image.width"
+         [height]="image.height" />
+  </div>
   <p *ngIf="legend" class="thumbnail-legend">{{ legend }}</p>
 </div>
