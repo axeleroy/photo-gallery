@@ -144,3 +144,28 @@ Then take everything in `/dist/photo-gallery` and deploy anywhere you want !
 
 **Note:** make sure the `assets` folder containing the icons is at the root of you website.
 Edit the code if you want the icons to be stored somewhere else.
+
+### Making it yours: customize its CSS
+Here are some CSS styles to apply to the page containing the app in order to customize its look to your liking:
+
+#### Changing the typography
+Style `h1` and `.thumbnail-legend` to change the look of the page title and thumbnails' legend.
+You can also style the links using the `a` and `a:hover` selectors.
+
+### Grid spacing
+To widen or tighten the gap between thumbnails, change `.thumbnail-list-item`'s `margin` properties.
+
+### Placeholder color
+To change the color of loading pictures, change the `.thumbnail-bg`'s `background-color`.
+
+### Loader style and color
+Use `border` properties to customize the style and color of the `.loader` component.
+You can find multiple examples [here](https://www.w3schools.com/howto/howto_css_loader.asp).
+
+### Make the last line of thumbnails fill the entire width of the page
+Just set the following:
+```css
+.thumbnail-list-end {
+  flex-grow: 0 !important;
+}
+```
