@@ -20,7 +20,7 @@ export class AlbumService implements Resolve<AlbumContent> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<AlbumContent> {
     const albumId = route.paramMap.get('albumId');
     return new CachedRequest<AlbumContent>(this.http)
-    .fetch(db.albums, albumId, environment.albumBaseUrl + albumId + environment.albumFileNameUrl, 30)
+    .fetch(db.albums, albumId, environment.albumBaseUrl + albumId + environment.albumFileNameUrl, environment.albumCacheDuration)
     .pipe(
       catchError(() => {
         this.router.navigateByUrl('/not-found');

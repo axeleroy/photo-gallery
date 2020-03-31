@@ -30,7 +30,7 @@ export class AlbumListPageComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscription = new CachedRequest<Album[]>(this.http)
-      .fetch(db.list, 'list', environment.albumListUrl, 1)
+      .fetch(db.list, 'list', environment.albumListUrl, environment.albumListCacheDuration)
       .subscribe((albumList: Album[]) => this.albums = albumList);
   }
 
