@@ -121,6 +121,8 @@ The most important attributes to set are
 * `albumListUrl`: the URL to the albums list JSON
 * `albumBaseUrl`: the URL to the folder containing the albums to display
 * `albumFileNameUrl`: Name of the album JSON file, with file extension.
+* `albumListCacheDuration` and `albumCacheDuration`: the number of days the album list and an album is cached before it
+is considered expired.
 
 Set the last two variables so that the app fetches the JSON at `albumBaseUrl + albumId + albumFileNameUrl`.
 

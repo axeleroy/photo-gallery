@@ -10,6 +10,8 @@ export const environment = {
   albumListUrl: 'https://my-wonderful-website.com/assets/albums.json',
   albumBaseUrl: 'https://my-bucket.s3.eu-central-1.amazonaws.com/',
   albumFileNameUrl: '/album.json',
+  albumListCacheDuration: 1,
+  albumCacheDuration: 14,
   useHash: false,
   isProduction: false
 } as AppConfig;
