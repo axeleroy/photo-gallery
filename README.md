@@ -5,6 +5,9 @@ A minimal photo gallery mimicking Google Photos' style and intended for use with
 ### Demo _(in production!)_
 [axel.leroy.sh/photography](https://axel.leroy.sh/photography)
 
+### Blog article
+[axel.leroy.sh/blog/the-making-of-photo-gallery](https://axel.leroy.sh/blog/the-making-of-photo-gallery)
+
 ## Goals and functionalities
 When working on this project, my goals were to make this photo gallery
 * Embeddable in a static website hosted on AWS (S3 & Cloudfront).
