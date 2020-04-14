@@ -20,7 +20,7 @@ export class ThumbnailListComponent {
   /**
    * Component to display.
    */
-  @ContentChild('thumbnail', { static: false }) thumbnailTemplate: TemplateRef<any>;
+  @ContentChild('thumbnail') thumbnailTemplate: TemplateRef<any>;
 
   ratio(input: any) {
     const image: Image = this.imageFn(input);

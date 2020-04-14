@@ -19,7 +19,7 @@ export class FullscreenPictureComponent {
     this.wrapper = input;
   }
 
-  @ViewChild('pictureElement', { static: false })
+  @ViewChild('pictureElement')
   public pictureElement: ElementRef;
 
   /**
