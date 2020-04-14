@@ -14,7 +14,7 @@ export class PicturePageComponent implements OnDestroy {
   loading = true;
   showInfoPanel = false;
 
-  @ViewChild('pictureComponent', { static: false })
+  @ViewChild('pictureComponent')
   pictureComponent: ElementRef;
 
   constructor(private route: ActivatedRoute,
