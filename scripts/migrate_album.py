@@ -34,7 +34,7 @@ def main():
 
     base_url = f'https://{args.bucket_name}.s3.amazonaws.com/{args.album_id}'
     if args.cloudfront_id:
-        cloudfront, distribution_id, base_url = init_cloudfront(args.cloudfront_id, {args.album_id})
+        cloudfront, distribution_id, base_url = init_cloudfront(args.cloudfront_id, args.album_id)
 
     content = s3.Object(args.bucket_name, f'{args.album_id}/album.json')
     album_json = json.loads(content.get()['Body'].read().decode('utf-8'))
@@ -57,6 +57,8 @@ def main():
     if args.cloudfront_id:
         print(f'\nInvalidating Cloudfront distribution {distribution_id}')
         invalidate_cloudfront(cloudfront, distribution_id, args.album_id)
+
+    print(json.dumps(album_json['pictures'], indent=4))
 
 
 main()

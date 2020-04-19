@@ -28,9 +28,6 @@ def arg_parsing():
     parser.add_argument("--fullsize-ratio", type=float, help="If set, the ratio at which the fullsize pictures are "
                                                              "reduced. For example, 0.3 will reduce a 24MP picture "
                                                              "30 percent into a ~8MP picture.")
-    parser.add_argument("--thumbnail-ratio", type=float, default=0.1, help="Ratio at which the thumbnail pictures are "
-                                                                           "reduced from the original picture. Default"
-                                                                           "is 0.1 (10 percent the original size)")
 
     return parser.parse_args()
 
@@ -116,7 +113,7 @@ def main():
 
     # Write file
     with open(args.albums_list, 'w+', encoding='utf-8') as albums_list_file:
-        json.dump(new_album, albums_list_file, ensure_ascii=False)
+        json.dump(new_album, albums_list_file, ensure_ascii=False, indent=4)
     albums_list_file.close()
 
     print("\nAlbum creation done!")
