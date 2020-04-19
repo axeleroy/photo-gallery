@@ -4,9 +4,6 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Subscription } from 'rxjs';
-import { Image } from '../../shared/types/Image';
-import { CachedRequest } from '../../shared/cache/cached-request';
-import { db } from '../../shared/cache/app-database';
 import { Thumbnail } from "../../shared/types/Thumbnail";
 
 @Component({
@@ -31,8 +28,7 @@ export class AlbumListPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subscription = new CachedRequest<Album[]>(this.http)
-      .fetch(db.list, 'list', environment.albumListUrl, environment.albumListCacheDuration)
+    this.subscription = this.http.get<Album[]>(environment.albumListUrl)
       .subscribe((albumList: Album[]) => this.albums = albumList);
   }
 

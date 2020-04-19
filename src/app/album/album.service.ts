@@ -5,8 +5,6 @@ import { Observable, of } from 'rxjs';
 import AlbumContent from '../shared/types/AlbumContent';
 import { catchError } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
-import { db } from '../shared/cache/app-database';
-import { CachedRequest } from '../shared/cache/cached-request';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +17,7 @@ export class AlbumService implements Resolve<AlbumContent> {
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<AlbumContent> {
     const albumId = route.paramMap.get('albumId');
-    return new CachedRequest<AlbumContent>(this.http)
-      .fetch(db.albums, albumId, environment.albumBaseUrl + albumId + environment.albumFileNameUrl, environment.albumCacheDuration)
+    return this.http.get<AlbumContent>(environment.albumBaseUrl + albumId + environment.albumFileNameUrl)
       .pipe(
         catchError(() => {
           this.router.navigateByUrl('/not-found');

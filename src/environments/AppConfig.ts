@@ -17,18 +17,6 @@ export interface AppConfig {
    */
   albumFileNameUrl: string;
   /**
-   * Debug option to disable the cache.
-   */
-  disableCache?: boolean;
-  /**
-   * Number of days until the cached album list expires.
-   */
-  albumListCacheDuration: number;
-  /**
-   * Number of days until a cached album expires.
-   */
-  albumCacheDuration: number;
-  /**
    * Whether to use Hash URL instead of HTML5 pushState
    */
   useHash: boolean;
