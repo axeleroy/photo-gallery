@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { Image } from '../../shared/types/Image';
 import { CachedRequest } from '../../shared/cache/cached-request';
 import { db } from '../../shared/cache/app-database';
+import { Thumbnail } from "../../shared/types/Thumbnail";
 
 @Component({
   selector: 'app-album-list-page',
@@ -42,7 +43,7 @@ export class AlbumListPageComponent implements OnInit, OnDestroy {
   /**
    * Extracts the thumbnail of an Album.
    */
-  getThumbnail(album: Album): Image {
+  getThumbnail(album: Album): Thumbnail {
     return album.thumbnail;
   }
 }

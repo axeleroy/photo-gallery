@@ -1,14 +1,15 @@
 import argparse
-import boto3
-from botocore.client import ClientError
-from datetime import datetime
-from io import BytesIO
-import math
 import os
 import json
-import stringcase
-import unidecode
-from wand.image import Image
+
+from album_lib import get_album_id
+from album_lib import get_sizes
+from album_lib import init_bucket
+from album_lib import init_cloudfront
+from album_lib import open_picture
+from album_lib import resize_and_upload
+from album_lib import upload_album_json
+from album_lib import invalidate_cloudfront
 
 
 def arg_parsing():
@@ -34,83 +35,16 @@ def arg_parsing():
     return parser.parse_args()
 
 
-def init_bucket(args):
-    """Inits the S3 and S3 client"""
-    # Init s3 resource
-    s3 = boto3.resource('s3')
-
-    # Check that bucket exists
-    s3_client = boto3.client('s3')
-    try:
-        s3_client.head_bucket(Bucket=args.bucket_name)
-    except ClientError:
-        print(f'Bucket {args.bucket_name} does not exist or you do not have access to it')
-        exit(1)
-    return s3, s3_client
-
-
-def init_cloudfront(cloudfront_id, album_id):
-    cloudfront = boto3.client('cloudfront')
-    try:
-        distribution = cloudfront.get_distribution(Id=cloudfront_id)["Distribution"]
-        base_url = f'https://{distribution["DomainName"]}/{album_id}'
-    except ClientError:
-        print(f'Cloudfront distribution {cloudfront_id} does not exist or you do not have access to it.')
-        print("Using the S3 bucket URL instead")
-    return cloudfront, distribution["Id"], base_url
-
-
-def convert_and_upload_picture(pic: Image, path, filename, ratio, s3_client, args):
-    if ratio:
-        pic.resize(
-          int(pic.width * ratio),
-          int(pic.height * ratio)
-        )
-    upload_picture(pic, path, filename, s3_client, args)
-    return pic.width, pic.height
-
-
-def upload_picture(pic, path, filename, s3_client, args):
-    s3_client.upload_fileobj(
-      BytesIO(pic.make_blob('jpeg')),
-      args.bucket_name,
-      f'{path}/{filename}',
-      ExtraArgs={'ACL': 'public-read'})
-
-
 def treat_picture(album_id, album_json, args, base_url, counter, picture, s3_client):
     picture_filename = os.path.basename(picture)
-
-    # Open the picture using Wand / ImageMagick
-    with Image(filename=picture) as img:
-        img.auto_orient()  # Orient the picture from the EXIF
-        with img.clone() as thumbnail:
-            thumbnail_width, thumbnail_height = convert_and_upload_picture(thumbnail, f'{album_id}/thumbnails',
-                                                                           picture_filename, args.thumbnail_ratio,
-                                                                           s3_client, args)
-
-        width, height = convert_and_upload_picture(img, album_id, picture_filename, args.fullsize_ratio, s3_client,
-                                                   args)
-
-        album_json['pictures'].append({
-          'id': f'{counter}',
-          'thumbnail': {
-            'url': f'{base_url}/thumbnails/{picture_filename}',
-            'height': thumbnail_height,
-            'width': thumbnail_width
-          },
-          'fullsize': {
-            'url': f'{base_url}/{picture_filename}',
-            'height': height,
-            'width': width
-          }
-        })
+    img = open_picture(picture)
+    album_json['pictures'].append(resize_and_upload(album_id, picture_filename, args, base_url, counter, img, s3_client,
+                                                    get_sizes()))
 
 
 def main():
     args = arg_parsing()
-    # Album ID = Album name in lowercase, without any space nor accent
-    album_id = unidecode.unidecode(stringcase.alphanumcase(args.album_name).lower())
+    album_id = get_album_id(args.album_name)
 
     # Check that album_folder exists
     if not os.path.isdir(args.album_folder):
@@ -145,26 +79,17 @@ def main():
 
     for picture in sorted(pictures):
         print(f'\nWorking on image {counter} out of {len(pictures)}')
-        treat_picture(album_id, album_json, args, base_url, counter, picture, s3_client)
+        filename, img = open_picture(picture)
+        album_json['pictures'].append(resize_and_upload(album_id, filename, args, base_url, counter, img, s3_client,
+                                                        get_sizes()))
         counter += 1
 
     print("\nUploading the album's JSON file to S3")
-    json_obj = s3.Object(args.bucket_name, f'{album_id}/album.json')
-    json_obj.put(Body=json.dumps(album_json), ACL='public-read')
+    upload_album_json(album_json, album_id, args.bucket_name, s3)
 
     if args.cloudfront_id:
         print(f'\nInvalidating Cloudfront distribution {distribution_id}')
-        cloudfront.create_invalidation(
-            DistributionId=distribution_id,
-            InvalidationBatch={
-              'Paths': {
-                'Quantity': 1,
-                'Items': [
-                  f'/{album_id}/*',
-                ]
-              },
-              'CallerReference': str(math.trunc(datetime.timestamp(datetime.now())))
-            })
+        invalidate_cloudfront(cloudfront, distribution_id, album_id)
 
     print(f'\nAppending album to {args.albums_list}')
     try:

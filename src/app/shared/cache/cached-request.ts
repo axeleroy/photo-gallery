@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { from, Observable, of } from 'rxjs';
 import { CachedContent } from './app-database';
 import { map, switchMap } from 'rxjs/operators';
+import { environment } from "../../../environments/environment";
 
 /**
  * HTTP Client that caches responses to an IndexedDB during the given amount of days.
@@ -23,6 +24,10 @@ export class CachedRequest<T> {
    */
   fetch(table: Dexie.Table<CachedContent<T>, string>, id: string, url: string, maxDays: number): Observable<T> {
     this.dateLimit.setDate(this.dateLimit.getDate() - maxDays);
+
+    if (environment.disableCache) {
+      return this.http.get<T>(url);
+    }
 
     let obs: Observable<CachedContent<T>>;
     try {

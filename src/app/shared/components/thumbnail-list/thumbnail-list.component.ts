@@ -1,5 +1,6 @@
 import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
 import { Image } from '../../types/Image'
+import { MimeType, Thumbnail } from "../../types/Thumbnail";
 
 @Component({
   selector: 'app-thumbnail-list',
@@ -13,9 +14,9 @@ export class ThumbnailListComponent {
   @Input() public list: any;
 
   /**
-   * Function to extract the Image from an Album or Picture.
+   * Function to extract the Thumbnail from an Album or Picture.
    */
-  @Input() public imageFn: (x: any) => Image = ((x: any) => x);
+  @Input() public imageFn: (x: any) => Thumbnail = ((x: any) => x);
 
   /**
    * Component to display.
@@ -23,7 +24,7 @@ export class ThumbnailListComponent {
   @ContentChild('thumbnail') thumbnailTemplate: TemplateRef<any>;
 
   ratio(input: any) {
-    const image: Image = this.imageFn(input);
+    const image: Image = this.imageFn(input).default;
     return 240 / (image.height / image.width);
   }
 
