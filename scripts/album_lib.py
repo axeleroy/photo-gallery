@@ -84,8 +84,9 @@ def resize_and_upload(album_id, picture_name, args, base_url, counter, image, s3
 
     default_size = sizes[0]
     picture = thumbnail(image, default_size)
-    path = f'thumbnails/{picture_name}-{default_size}.jpg'
-    picture_json['thumbnail']['default'] = get_image_json(f'{base_url}/{path}', picture)
+    path = f'thumbnails/{picture_name}'
+    upload_picture(picture, album_id, f'{path}.jpg', 'jpeg', s3_client, args.bucket_name)
+    picture_json['thumbnail']['default'] = get_image_json(f'{base_url}/{path}.jpg', picture)
 
     # Make thumbnails for each specified size
     for size in sizes:
@@ -97,12 +98,12 @@ def resize_and_upload(album_id, picture_name, args, base_url, counter, image, s3
         picture_json['thumbnail']['sizes']['webp'].append(get_image_json(f'{base_url}/{path}.webp', picture))
 
     if args.fullsize_ratio:
-        image.resize((
-            image.width * args.fullsize_ration,
-            image.height * args.fullsize_ration
+        image = image.resize((
+            int(image.width * args.fullsize_ratio),
+            int(image.height * args.fullsize_ratio)
         ))
     path = f'{picture_name}.jpg'
-    upload_picture(image, album_id, path, 'jpeg', s3_client, args.bucket_name)
+    upload_picture(image, album_id, path, 'jpeg', s3_client, args.bucket_name, True)
     picture_json['fullsize'] = get_image_json(f'{base_url}/{path}', image)
 
     return picture_json
@@ -125,9 +126,12 @@ def thumbnail(image, width: int):
     return img
 
 
-def upload_picture(image: Image, album_id, path, file_format, s3_client, bucket_name):
+def upload_picture(image: Image, album_id, path, file_format, s3_client, bucket_name, fullsize=False):
     in_mem_file = BytesIO()
-    image.save(in_mem_file, format=file_format)
+    if fullsize:
+        image.save(in_mem_file, format=file_format, subsampling=0, quality=100)
+    else:
+        image.save(in_mem_file, format=file_format)
     in_mem_file.seek(0)
     s3_client.upload_fileobj(
         in_mem_file,
@@ -138,7 +142,7 @@ def upload_picture(image: Image, album_id, path, file_format, s3_client, bucket_
 
 def upload_album_json(album_json, album_id, bucket_name, s3):
     json_obj = s3.Object(bucket_name, f'{album_id}/album.json')
-    json_obj.put(Body=json.dumps(album_json), ACL='public-read')
+    json_obj.put(Body=json.dumps(album_json, indent=4), ACL='public-read')
 
 
 def invalidate_cloudfront(cloudfront, distribution_id, album_id):
