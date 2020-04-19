@@ -35,18 +35,42 @@ There are two types of JSON files:
         id: "string",
         name: "string",
         thumbnail: {
-            url: "string",
-            height: 300, // in pixels
-            width: 400 // in pixels
+            default : {
+                url: "string",
+                height: 300, // in pixels
+                width: 400 // in pixels
+            },
+            webp: [
+                {
+                    url: "string",
+                    height: 300, // in pixels
+                    width: 400 // in pixels
+                },
+                {
+                    url: "string",
+                    height: 600, // in pixels
+                    width: 800 // in pixels
+                }
+            ],
+            jpeg: [
+                {
+                    url: "string",
+                    height: 300, // in pixels
+                    width: 400 // in pixels
+                },
+                {
+                    url: "string",
+                    height: 600, // in pixels
+                    width: 800 // in pixels
+                }
+            ]
         }
     },
     {
         id: "string",
         name: "string",
         thumbnail: {
-            url: "string",
-            height: 300, // in pixels
-            width: 400 // in pixels
+            ...
         }
     }
 ]
@@ -61,10 +85,36 @@ There are two types of JSON files:
       {
         id: "string",
         thumbnail: {
-           url: "string",
-           height: 300, // in pixels
-           width: 400 // in pixels
-        },
+           default : {
+               url: "string",
+               height: 300, // in pixels
+               width: 400 // in pixels
+           },
+           webp: [
+               {
+                   url: "string",
+                   height: 300, // in pixels
+                   width: 400 // in pixels
+               },
+               {
+                   url: "string",
+                   height: 600, // in pixels
+                   width: 800 // in pixels
+               }
+           ],
+           jpeg: [
+               {
+                   url: "string",
+                   height: 300, // in pixels
+                   width: 400 // in pixels
+               },
+               {
+                   url: "string",
+                   height: 600, // in pixels
+                   width: 800 // in pixels
+               }
+           ]
+       },
         fullsize: {
             url: "string",
             height: 3000, // in pixels
@@ -74,9 +124,7 @@ There are two types of JSON files:
       {
         id: "string",
         thumbnail: {
-           url: "string",
-           height: 300,
-           width: 400
+           ...
         },
         fullsize: {
             url: "string",
@@ -103,9 +151,9 @@ Given a folder containing pictures you want to add to an album, it
 * uploads the JSON, pictures and the thumbnails to the given S3 bucket (all under `s3://bucket-name/album-name/`)
 * updates the albums list JSON with the new album on top
 
-It is located in `/scripts` and requires
+It is located in [scripts/](scripts) and requires
  * Python 3.6+
- * [ImageMagick](http://docs.wand-py.org/en/0.5.7/guide/install.html)
+ * `libjpeg` and `libwebp` installed
  * a few dependencies you have to install using `pip install -r requirements.txt`
  * and to set up [your AWS credentials](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/quickstart.html#configuration)
 
@@ -113,6 +161,9 @@ Finally, to list its parameters, just type `python add-album.py -h`.
  
 Once it had run, take the created/updated `albums.json` and upload it wherever you want (in a bucket, on your website
 allongside the gallery, etc.)
+
+**Note to users of previous version:** Since the thumbnail structure has changed, I made a migration script named
+[migrate-albums.py](scripts/migrate_album.py) to migrate existing albums.
 
 ### Building the Angular app
 
@@ -142,7 +193,7 @@ The app will fetch the albums list at `https://my-wonderful-website.com/assets/a
 
 Once everything is all set, build the app 
 ```bash
-npm build [--prod] --baseHref=/base-folder --deployUrl=/assets/
+npm build [--prod] --baseHref=/base-folder [--deployUrl=/assets/]
 ```
 
 Then take everything in `/dist/photo-gallery` and deploy anywhere you want !

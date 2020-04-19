@@ -17,6 +17,10 @@ export interface AppConfig {
    */
   albumFileNameUrl: string;
   /**
+   * Debug option to disable the cache.
+   */
+  disableCache?: boolean;
+  /**
    * Number of days until the cached album list expires.
    */
   albumListCacheDuration: number;
