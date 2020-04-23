@@ -82,18 +82,19 @@ def resize_and_upload(album_id, picture_name, args, base_url, counter, image, s3
         'fullsize': {}
     }
 
+    exif = image.info['exif']
     default_size = sizes[0]
     picture = thumbnail(image, default_size)
     path = f'thumbnails/{picture_name}'
-    upload_picture(picture, album_id, f'{path}.jpg', 'jpeg', s3_client, args.bucket_name)
+    upload_picture(picture, album_id, f'{path}.jpg', 'jpeg', s3_client, args.bucket_name, exif)
     picture_json['thumbnail']['default'] = get_image_json(f'{base_url}/{path}.jpg', picture)
 
     # Make thumbnails for each specified size
     for size in sizes:
         path = f'thumbnails/{picture_name}-{size}'
         picture = thumbnail(image, size)
-        upload_picture(picture, album_id, f'{path}.jpg', 'jpeg', s3_client, args.bucket_name)
-        upload_picture(picture, album_id, f'{path}.webp', 'webp', s3_client, args.bucket_name)
+        upload_picture(picture, album_id, f'{path}.jpg', 'jpeg', s3_client, args.bucket_name, exif)
+        upload_picture(picture, album_id, f'{path}.webp', 'webp', s3_client, args.bucket_name, exif)
         picture_json['thumbnail']['sizes']['jpeg'].append(get_image_json(f'{base_url}/{path}.jpg', picture))
         picture_json['thumbnail']['sizes']['webp'].append(get_image_json(f'{base_url}/{path}.webp', picture))
 
@@ -103,7 +104,7 @@ def resize_and_upload(album_id, picture_name, args, base_url, counter, image, s3
             int(image.height * args.fullsize_ratio)
         ))
     path = f'{picture_name}.jpg'
-    upload_picture(image, album_id, path, 'jpeg', s3_client, args.bucket_name, True)
+    upload_picture(image, album_id, path, 'jpeg', s3_client, args.bucket_name, exif, True)
     picture_json['fullsize'] = get_image_json(f'{base_url}/{path}', image)
 
     return picture_json
@@ -126,10 +127,10 @@ def thumbnail(image, width: int):
     return img
 
 
-def upload_picture(image: Image, album_id, path, file_format, s3_client, bucket_name, fullsize=False):
+def upload_picture(image: Image, album_id, path, file_format, s3_client, bucket_name, exif, fullsize=False):
     in_mem_file = BytesIO()
     if fullsize:
-        image.save(in_mem_file, format=file_format, subsampling=0, quality=100)
+        image.save(in_mem_file, format=file_format, exif=exif, subsampling=0, quality=100)
     else:
         image.save(in_mem_file, format=file_format)
     in_mem_file.seek(0)
