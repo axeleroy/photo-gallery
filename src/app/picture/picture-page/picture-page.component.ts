@@ -2,6 +2,7 @@ import {Component, ElementRef, HostListener, OnDestroy, ViewChild} from '@angula
 import {ActivatedRoute, Router} from '@angular/router';
 import {PictureWrapper} from '../../shared/types/PictureWrapper';
 import {Subscription} from 'rxjs';
+import { InfoPanelComponent } from "./info-panel/info-panel.component";
 
 @Component({
   selector: 'app-picture-page',
@@ -11,11 +12,12 @@ import {Subscription} from 'rxjs';
 export class PicturePageComponent implements OnDestroy {
   private subscription: Subscription;
   pictureWrapper: PictureWrapper;
-  loading = true;
   showInfoPanel = false;
 
   @ViewChild('pictureComponent')
   pictureComponent: ElementRef;
+  @ViewChild('infoPanelComponent')
+  infoPanelComponent: InfoPanelComponent
 
   constructor(private route: ActivatedRoute,
               private router: Router) {
@@ -28,10 +30,6 @@ export class PicturePageComponent implements OnDestroy {
 
   toggleInfoPanel() {
     this.showInfoPanel = !this.showInfoPanel;
-  }
-
-  loadingStateChange(loading: boolean) {
-    this.loading = loading;
   }
 
   @HostListener('window:keyup', ['$event'])

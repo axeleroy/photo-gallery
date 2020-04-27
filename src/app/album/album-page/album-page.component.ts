@@ -3,7 +3,7 @@ import AlbumContent from '../../shared/types/AlbumContent';
 import { ActivatedRoute } from '@angular/router';
 import { Image } from "../../shared/types/Image";
 import Picture from "../../shared/types/Picture";
-import { Thumbnail } from "../../shared/types/Thumbnail";
+import { ImageSet } from "../../shared/types/ImageSet";
 
 @Component({
   selector: 'app-album-page',
@@ -26,7 +26,7 @@ export class AlbumPageComponent implements OnInit {
   /**
    * Extract the thumbnail of a Picture.
    */
-  getThumbnail(picture: Picture): Thumbnail {
+  getThumbnail(picture: Picture): ImageSet {
     return picture.thumbnail;
   }
 }

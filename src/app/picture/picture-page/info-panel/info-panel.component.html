@@ -1,27 +1,27 @@
-<app-loader *ngIf="!exifTags || loading"></app-loader>
-<div class="wrapper" *ngIf="exifTags && !loading">
+<app-loader *ngIf="!exifTags"></app-loader>
+<div class="wrapper" *ngIf="exifTags">
   <div class="info">
     <img class="icon" src="/assets/icons/lens.svg" alt="Focal length" />
-    <span class="content">{{ numberToString(exifTags['FocalLength']) }}mm</span>
+    <span class="content">{{ exifTags[ ExifTag.FOCAL_LENGTH ] }}mm</span>
   </div>
   <div class="info">
     <img class="icon" src="/assets/icons/aperture.svg" alt="Aperture" />
-    <span class="content">f/{{ numberToString(exifTags['FNumber']) }}</span>
+    <span class="content">f/{{ exifTags[ ExifTag.APERTURE ] }}</span>
   </div>
   <div class="info">
     <img class="icon" src="/assets/icons/shutter-speed.svg" alt="Shutter speed" />
-    <span class="content">{{ numberToString(exifTags['ExposureTime'], true) }}s</span>
+    <span class="content">{{ exifTags[ ExifTag.EXPOSURE ] }}s</span>
   </div>
   <div class="info">
     <img class="icon" src="/assets/icons/iso.svg" alt="ISO" />
-    <span class="content">{{ exifTags['ISOSpeedRatings'] }}</span>
+    <span class="content">{{ exifTags[ ExifTag.ISO ] }}</span>
   </div>
   <div class="info">
     <img class="icon" src="/assets/icons/exposure-program.svg" alt="Exposure program"/>
-    <span class="content">{{ exifTags['ExposureProgram'] }}</span>
+    <span class="content">{{ exifTags[ ExifTag.PROGRAM ] }}</span>
   </div>
   <div class="info">
     <img class="icon" src="/assets/icons/camera.svg" alt="Camera" />
-    <span class="content">{{ exifTags['Make'] }} {{ exifTags['Model'] }}</span>
+    <span class="content">{{ exifTags[ ExifTag.MANUFACTURER ] }} {{ exifTags[ ExifTag.MODEL ] }}</span>
   </div>
 </div>

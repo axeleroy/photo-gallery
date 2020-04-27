@@ -1,6 +1,6 @@
 import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
 import { Image } from '../../types/Image'
-import { MimeType, Thumbnail } from "../../types/Thumbnail";
+import { ImageSet } from "../../types/ImageSet";
 
 @Component({
   selector: 'app-thumbnail-list',
@@ -16,7 +16,7 @@ export class ThumbnailListComponent {
   /**
    * Function to extract the Thumbnail from an Album or Picture.
    */
-  @Input() public imageFn: (x: any) => Thumbnail = ((x: any) => x);
+  @Input() public imageFn: (x: any) => ImageSet = ((x: any) => x);
 
   /**
    * Component to display.

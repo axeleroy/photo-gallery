@@ -4,9 +4,9 @@
     [list]="album.pictures"
     [imageFn]="getThumbnail">
     <ng-template #thumbnail let-thumbnail>
-      <app-picture
+      <app-picture-thumbnail
         [picture]="thumbnail">
-      </app-picture>
+      </app-picture-thumbnail>
     </ng-template>
   </app-thumbnail-list>
 </div>

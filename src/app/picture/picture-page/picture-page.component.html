@@ -13,14 +13,13 @@
     <app-fullscreen-picture
       #pictureComponent
       [ngClass]="{ 'span-2-cols' : !showInfoPanel }"
-      (loadingStateChange)="loadingStateChange($event)"
       [picture]="pictureWrapper" >
     </app-fullscreen-picture>
     <app-info-panel
       *ngIf="showInfoPanel"
+      #infoPanelComponent
       class="info-panel"
-      [loading]="loading"
-      [pictureElement]="pictureComponent.pictureElement">
+      [exifTags]="pictureWrapper.picture.exif">
     </app-info-panel>
   </div>
 </div>
