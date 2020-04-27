@@ -10,12 +10,9 @@ export class FullscreenPictureComponent {
   wrapper: PictureWrapper;
   loading = true;
 
-  @Output() loadingStateChange = new EventEmitter<boolean>();
-
   @Input()
   set picture(input: PictureWrapper) {
     this.loading = true;
-    this.loadingStateChange.emit(true)
     this.wrapper = input;
   }
 
@@ -23,11 +20,11 @@ export class FullscreenPictureComponent {
   public pictureElement: ElementRef;
 
   /**
-   * Stop displaying the thumbnail and loader once the fullsize image has loaded.
+   * Stop displaying the loader once the fullsize image has loaded.
    */
   onLoad() {
+    console.log("loaded");
     this.loading = false;
-    this.loadingStateChange.emit(false);
   }
 
 }

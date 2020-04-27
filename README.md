@@ -114,22 +114,49 @@ There are two types of JSON files:
                    width: 800 // in pixels
                }
            ]
-       },
+        },
         fullsize: {
-            url: "string",
-            height: 3000, // in pixels
-            width: 4000 // in pixels
-        }
+           default : {
+                url: "string",
+                height: 300, // in pixels
+                width: 400 // in pixels
+           },
+           webp: [
+            {
+                 url: "string",
+                 height: 300, // in pixels
+                 width: 400 // in pixels
+             },
+             {
+                 url: "string",
+                 height: 600, // in pixels
+                 width: 800 // in pixels
+             }
+            ],
+            jpeg: [
+             {
+                 url: "string",
+                 height: 300, // in pixels
+                 width: 400 // in pixels
+             },
+             {
+                 url: "string",
+                 height: 600, // in pixels
+                 width: 800 // in pixels
+             }
+            ]
+        },
+        exif: {
+          'Tag': "value" 
+        }   
       },
       {
         id: "string",
         thumbnail: {
-           ...
+          ...
         },
         fullsize: {
-            url: "string",
-            height: 3000,
-            width: 4000
+          ...
         }
       }
     ]
@@ -146,9 +173,10 @@ Speaking of Python script…
 In order to easily upload pictures and create the JSONs, I created a Python script taking care of everything.
 
 Given a folder containing pictures you want to add to an album, it
-* generates thumbnails
+* parses the relevant EXIF data from each picture
+* generates thumbnails and different sizes of the pictures
 * generates a JSON file describing the album's content (see [How it Works](#how-it-works))
-* uploads the JSON, pictures and the thumbnails to the given S3 bucket (all under `s3://bucket-name/album-name/`)
+* uploads the JSON, pictures and the thumbnails to the given S3 bucket (all under `s3://bucket-name/albumname/`)
 * updates the albums list JSON with the new album on top
 
 It is located in [scripts/](scripts) and requires
@@ -162,8 +190,8 @@ Finally, to list its parameters, just type `python add-album.py -h`.
 Once it had run, take the created/updated `albums.json` and upload it wherever you want (in a bucket, on your website
 allongside the gallery, etc.)
 
-**Note to users of previous version:** Since the thumbnail structure has changed, I made a migration script named
-[migrate-albums.py](scripts/migrate_album.py) to migrate existing albums.
+**Note to users of previous version:** Since the album structure has changed to handle different sizes and WebP,
+I made a migration script named [migrate-albums.py](scripts/migrate_album.py) to migrate existing albums.
 
 ### Building the Angular app
 

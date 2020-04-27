@@ -13,16 +13,39 @@
 .picture {
   display: flex;
   height: inherit;
+  align-items: center;
+  justify-content: center;
 }
 
-.picture img {
-  margin: auto;
+app-picture {
+  display: flex;
+  height: inherit;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.picture ::ng-deep picture {
+  display: flex;
+  height: inherit;
+}
+
+.picture ::ng-deep img {
+  align-self: center;
   max-width: 100%;
   max-height: 100%;
 }
 
 .picture-loading {
-  display: none;
+  /** Because of lazyloading, if `display: none` were used, the picture would never load.
+      Instead the trick is to set the picture's size so small that it is not displayed.
+      I use 1px as a safety: 0 works but I fear that browsers' engines evolve to check if the picture can actually be
+      drawn before loading it.
+      Oh and obviously, if in the future web browsers compute the picture's actual size before fetching the right size,
+      this trick would probably cause the picture to be downloaded twice: in the min size (actually 200px) and in the
+      size that best fits the display.
+  **/
+  width: 1px;
 }
 
 .nav {
@@ -35,5 +58,5 @@
 }
 
 app-loader {
-  margin: auto;
+  align-self: center;
 }

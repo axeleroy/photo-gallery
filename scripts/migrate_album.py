@@ -2,12 +2,11 @@ import argparse
 import json
 import re
 
-from album_lib import get_sizes
 from album_lib import get_picture_file_name_and_ext
 from album_lib import init_bucket
 from album_lib import init_cloudfront
 from album_lib import fetch_picture_s3
-from album_lib import resize_and_upload
+from album_lib import process_picture
 from album_lib import upload_album_json
 from album_lib import invalidate_cloudfront
 
@@ -36,20 +35,23 @@ def main():
     if args.cloudfront_id:
         cloudfront, distribution_id, base_url = init_cloudfront(args.cloudfront_id, args.album_id)
 
+    print(f"Downloading and parsing s3://{args.bucket_name}/{args.album_id}/album.json")
     content = s3.Object(args.bucket_name, f'{args.album_id}/album.json')
     album_json = json.loads(content.get()['Body'].read().decode('utf-8'))
+    if len(album_json['pictures']) == 0:
+        print(f"No pictures found in album {args.album_id}")
     pictures = list(map(lambda pic: pic['fullsize']['url'], album_json['pictures']))
-    pictures = list(map(lambda url: re.search('([A-Z0-9_]+.jpg)', url).group(1), pictures))
+    pictures = list(map(lambda url: re.search('([A-Z0-9_~]+.jpg)', url).group(1), pictures))
 
     album_json['pictures'] = []
     counter = 1
 
     for picture in sorted(pictures):
-        print(f'\nWorking on image {counter} out of {len(pictures)}')
+        print(f'\nWorking on image {counter} out of {len(pictures)} ({picture})')
         img = fetch_picture_s3(args.bucket_name, f'{args.album_id}/{picture}', s3_client)
         picture_name, file_ext = get_picture_file_name_and_ext(picture)
-        album_json['pictures'].append(resize_and_upload(args.album_id, picture_name, args, base_url, counter, img,
-                                                        s3_client, get_sizes()))
+        album_json['pictures'].append(process_picture(args.album_id, picture_name, args, base_url, counter, img,
+                                                      s3_client))
         counter += 1
 
     print("\nUploading the album's JSON file to S3")

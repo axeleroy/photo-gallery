@@ -1,0 +1,15 @@
+<picture>
+  <ng-container *ngFor="let mimeType of ALL_MIME_TYPES">
+    <source *ngIf="hasMimeType(mimeType)"
+            [type]="'image/' + mimeType"
+            [srcset]="getSrcSet(mimeType)"
+            [sizes]="sizes">
+  </ng-container>
+  <img [ngClass]="classes"
+       loading="lazy"
+       [src]="picture.default.url"
+       [alt]="alt ? alt : ''"
+       [attr.width]="placeholder ? picture.default.width : null"
+       [attr.height]="placeholder ? picture.default.height : null"
+       (load)="loaded.emit()" />
+</picture>

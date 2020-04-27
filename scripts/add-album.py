@@ -3,11 +3,10 @@ import os
 import json
 
 from album_lib import get_album_id
-from album_lib import get_sizes
 from album_lib import init_bucket
 from album_lib import init_cloudfront
 from album_lib import open_picture
-from album_lib import resize_and_upload
+from album_lib import process_picture
 from album_lib import upload_album_json
 from album_lib import invalidate_cloudfront
 
@@ -35,8 +34,7 @@ def arg_parsing():
 def treat_picture(album_id, album_json, args, base_url, counter, picture, s3_client):
     picture_filename = os.path.basename(picture)
     img = open_picture(picture)
-    album_json['pictures'].append(resize_and_upload(album_id, picture_filename, args, base_url, counter, img, s3_client,
-                                                    get_sizes()))
+    album_json['pictures'].append(process_picture(album_id, picture_filename, args, base_url, counter, img, s3_client))
 
 
 def main():
@@ -75,10 +73,9 @@ def main():
         cloudfront, distribution_id, base_url = init_cloudfront(args.cloudfront_id, album_id)
 
     for picture in sorted(pictures):
-        print(f'\nWorking on image {counter} out of {len(pictures)}')
         filename, img = open_picture(picture)
-        album_json['pictures'].append(resize_and_upload(album_id, filename, args, base_url, counter, img, s3_client,
-                                                        get_sizes()))
+        print(f'\nWorking on image {counter} out of {len(pictures)} ({filename})')
+        album_json['pictures'].append(process_picture(album_id, filename, args, base_url, counter, img, s3_client))
         counter += 1
 
     print("\nUploading the album's JSON file to S3")

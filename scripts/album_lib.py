@@ -1,6 +1,7 @@
 import boto3
 from botocore.client import ClientError
 from datetime import datetime
+from exif_lib import get_exif
 from io import BytesIO
 import json
 import math
@@ -43,9 +44,9 @@ def init_cloudfront(cloudfront_id, album_id):
         exit(1)
 
 
-def get_sizes():
-    """Fetch the thumbnail sizes from sizes.txt"""
-    with open('sizes.txt') as f:
+def get_sizes(size):
+    """Fetch the thumbnail sizes from sizes-XXXX.txt"""
+    with open(size) as f:
         return list(map(lambda x: int(x), f.readlines()))
 
 
@@ -64,11 +65,12 @@ def open_picture(picture_path):
 
 
 def fetch_picture_s3(bucket, picture_path, s3_client):
+    print("Downloading picture… ", end='')
     file_byte_string = s3_client.get_object(Bucket=bucket, Key=picture_path)['Body'].read()
     return Image.open(BytesIO(file_byte_string))
 
 
-def resize_and_upload(album_id, picture_name, args, base_url, counter, image, s3_client, sizes):
+def process_picture(album_id, picture_name, args, base_url, counter, image, s3_client):
     """Takes a picture, resizes it in different sizes, uploads them and return a JSON representation of the picture"""
     picture_json = {
         'id': f'{counter}',
@@ -79,33 +81,46 @@ def resize_and_upload(album_id, picture_name, args, base_url, counter, image, s3
                 'webp': []
             }
         },
-        'fullsize': {}
+        'fullsize': {
+            'default': {},
+            'sizes': {
+                'jpeg': [],
+                'webp': []
+            }
+        },
+        'exif': get_exif(image)
     }
 
-    exif = image.info['exif']
-    default_size = sizes[0]
+    print("Uploading thumbnails… ", end="")
+    default_size = get_sizes("sizes-thumb.txt")[0]
     picture = thumbnail(image, default_size)
-    path = f'thumbnails/{picture_name}'
-    upload_picture(picture, album_id, f'{path}.jpg', 'jpeg', s3_client, args.bucket_name, exif)
-    picture_json['thumbnail']['default'] = get_image_json(f'{base_url}/{path}.jpg', picture)
+    path = f'thumbnails/{picture_name}.jpg'
+    upload_picture(picture, album_id, path, 'jpeg', s3_client, args.bucket_name)
+    picture_json['thumbnail']['default'] = get_image_json(f'{base_url}/{path}', picture)
 
-    # Make thumbnails for each specified size
-    for size in sizes:
+    # Make thumbnails for each specified sizes
+    for size in get_sizes("sizes-thumb.txt"):
         path = f'thumbnails/{picture_name}-{size}'
         picture = thumbnail(image, size)
-        upload_picture(picture, album_id, f'{path}.jpg', 'jpeg', s3_client, args.bucket_name, exif)
-        upload_picture(picture, album_id, f'{path}.webp', 'webp', s3_client, args.bucket_name, exif)
+        upload_picture(picture, album_id, f'{path}.jpg', 'jpeg', s3_client, args.bucket_name)
+        upload_picture(picture, album_id, f'{path}.webp', 'webp', s3_client, args.bucket_name)
         picture_json['thumbnail']['sizes']['jpeg'].append(get_image_json(f'{base_url}/{path}.jpg', picture))
         picture_json['thumbnail']['sizes']['webp'].append(get_image_json(f'{base_url}/{path}.webp', picture))
 
-    if args.fullsize_ratio:
-        image = image.resize((
-            int(image.width * args.fullsize_ratio),
-            int(image.height * args.fullsize_ratio)
-        ))
+    print("Uploading full sizes…")
+    default_size = get_sizes("sizes-full.txt")[0]
+    picture = thumbnail(image, default_size)
     path = f'{picture_name}.jpg'
-    upload_picture(image, album_id, path, 'jpeg', s3_client, args.bucket_name, exif, True)
-    picture_json['fullsize'] = get_image_json(f'{base_url}/{path}', image)
+    upload_picture(picture, album_id, path, 'jpeg', s3_client, args.bucket_name, True)
+    picture_json['fullsize']['default'] = get_image_json(f'{base_url}/{path}', picture)
+
+    for size in get_sizes("sizes-full.txt"):
+        path = f'{picture_name}-{size}'
+        picture = thumbnail(image, size)
+        upload_picture(picture, album_id, f'{path}.jpg', 'jpeg', s3_client, args.bucket_name, True)
+        upload_picture(picture, album_id, f'{path}.webp', 'webp', s3_client, args.bucket_name, True)
+        picture_json['fullsize']['sizes']['jpeg'].append(get_image_json(f'{base_url}/{path}.jpg', picture))
+        picture_json['fullsize']['sizes']['webp'].append(get_image_json(f'{base_url}/{path}.webp', picture))
 
     return picture_json
 
@@ -127,10 +142,10 @@ def thumbnail(image, width: int):
     return img
 
 
-def upload_picture(image: Image, album_id, path, file_format, s3_client, bucket_name, exif, fullsize=False):
+def upload_picture(image: Image, album_id, path, file_format, s3_client, bucket_name, fullsize=False):
     in_mem_file = BytesIO()
     if fullsize:
-        image.save(in_mem_file, format=file_format, exif=exif, subsampling=0, quality=100)
+        image.save(in_mem_file, format=file_format, subsampling=0, quality=100)
     else:
         image.save(in_mem_file, format=file_format)
     in_mem_file.seek(0)

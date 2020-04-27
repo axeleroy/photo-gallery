@@ -10,12 +10,11 @@
 
   <div class="picture">
     <app-loader *ngIf="loading"></app-loader>
-    <img
-        *ngIf="wrapper?.picture"
-        #pictureElement
-        [src]="wrapper.picture.fullsize.url"
-        [ngClass]="{'picture-loading': loading }"
-        (load)="onLoad()" />
+    <app-picture [picture]="wrapper.picture.fullsize"
+                 (loaded)="onLoad()"
+                 [ngClass]="{ 'picture-loading': loading }"
+                 sizes="calc(100vw - 6em)">
+    </app-picture>
   </div>
 
   <div class="nav" *ngIf="wrapper?.nextPictureId; else emptyNext">

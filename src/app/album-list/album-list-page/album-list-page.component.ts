@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Subscription } from 'rxjs';
-import { Thumbnail } from "../../shared/types/Thumbnail";
+import { ImageSet } from "../../shared/types/ImageSet";
 
 @Component({
   selector: 'app-album-list-page',
@@ -39,7 +39,7 @@ export class AlbumListPageComponent implements OnInit, OnDestroy {
   /**
    * Extracts the thumbnail of an Album.
    */
-  getThumbnail(album: Album): Thumbnail {
+  getThumbnail(album: Album): ImageSet {
     return album.thumbnail;
   }
 }
