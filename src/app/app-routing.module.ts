@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 import { environment } from "../environments/environment";
 
@@ -19,7 +19,10 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: environment.useHash })],
+  imports: [RouterModule.forRoot(routes, {
+    useHash: environment.useHash,
+    preloadingStrategy: PreloadAllModules
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
