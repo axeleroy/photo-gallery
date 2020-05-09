@@ -7,8 +7,8 @@ import {AppConfig} from './AppConfig';
 export const environment = {
   // tslint:disable:max-line-length
   albumListPageTitle: 'PhotoGallery',
-  albumListUrl: 'https://my-wonderful-website.com/assets/albums.json',
-  albumBaseUrl: 'https://my-bucket.s3.eu-central-1.amazonaws.com/',
+  albumListUrl: 'http://127.0.0.1:4000/assets/json/albums.json',
+  albumBaseUrl: 'https://d2ef3t29h6sl4.cloudfront.net/',
   albumFileNameUrl: '/album.json',
   useHash: false,
   isProduction: false
