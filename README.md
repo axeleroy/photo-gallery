@@ -2,6 +2,8 @@
 
 A minimal photo gallery mimicking Google Photos' style and intended for use with static websites.
 
+![Preview of the app](https://axel.leroy.sh/assets/img/introducing-photo-gallery/finished-product-800.jpg)
+
 ### Demo _(in production!)_
 [axel.leroy.sh/photography](https://axel.leroy.sh/photography)
 
