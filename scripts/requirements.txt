@@ -1,4 +1,4 @@
 boto3==1.10.8
 stringcase==1.2.0
 unidecode==1.1.1
-pillow==7.1.1
+pillow==9.0.1
